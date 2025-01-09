@@ -28,7 +28,11 @@ function Sidebar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden w-full absolute left-0 top-12 z-10 bg-[#1B4A8E]">
+        <div
+          className={`md:hidden w-full absolute  ${
+            !isOpen ? `right-[-100%]` : `right-0`
+          } top-12 z-10 bg-[#1B4A8E] transition-all duration-1000 ease-in-out`}
+        >
           <ul className="flex flex-col gap-3 ms-3">
             <li>
               <button className="hover:text-[#DDD]">
