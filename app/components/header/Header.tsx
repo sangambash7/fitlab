@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  console.log(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,10 +27,12 @@ function Header() {
     <>
       <header
         className={`w-full z-20 ${
-          pathname === "/" && isScrolled
-            ? "bg-[#1B4A8E] py-4 sticky top-0"
-            : "bg-gray-500 bg-opacity-80 py-3 absolute"
-        } flex justify-center transition-all duration-500`}
+          pathname === "/"
+            ? isScrolled
+              ? "bg-[#1B4A8E] py-4 sticky top-0"
+              : "bg-gray-500 bg-opacity-80 py-3 absolute"
+            : "bg-[#1B4A8E] py-4 sticky top-0"
+        }  flex justify-center transition-all duration-300`}
       >
         <div className="w-full xl:w-[1200px] mx-1 text-white">
           {" "}
