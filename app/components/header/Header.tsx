@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
+import AuthArea from "./AuthArea";
 import Sidebar from "./Sidebar";
 import { usePathname } from "next/navigation";
 
@@ -70,12 +71,7 @@ function Header() {
               </ul>
             </div>
             <div className="flex gap-3 items-center">
-              <button className="bg-slate-100 text-blue-700 rounded-md py-1 px-4">
-                Login
-              </button>
-              <button className="bg-blue-700 text-white rounded-md py-1 px-4">
-                Join
-              </button>
+              <AuthArea />
               <Sidebar />
             </div>
           </div>
