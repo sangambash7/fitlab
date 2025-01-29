@@ -8,13 +8,12 @@ function Login() {
   const [signUp, setSignUp] = useState(false);
 
   return (
-    <main className="flex justify-center h-screen">
-      <div className="grid md:grid-cols-2">
+    <main className="flex justify-center h-screen overflow-hidden">
+      <div className="grid md:grid-cols-2 ">
         <div className="hidden md:block ">
           <img alt="Intro Image" src="login/login.jpg" className="" />
         </div>
         <div className="flex flex-col items-center justify-center">
-          {" "}
           {!signUp ? (
             <SignIn setSignUp={setSignUp} />
           ) : (
