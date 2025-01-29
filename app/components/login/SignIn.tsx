@@ -1,3 +1,5 @@
+import { login } from "@/app/login/actions";
+
 interface SignInProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -12,6 +14,13 @@ function SignIn({ setSignUp }: SignInProps) {
           Sign up
         </button>
       </p>
+      <form>
+        <label htmlFor="email">Email:</label>
+        <input id="email" name="email" type="email" required />
+        <label htmlFor="password">Password:</label>
+        <input id="password" name="password" type="password" required />
+        <button formAction={login}>Log in</button>
+      </form>
     </>
   );
 }
