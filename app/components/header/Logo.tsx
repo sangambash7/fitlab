@@ -1,9 +1,12 @@
+import Link from "next/link";
 import Image from "next/image";
 
 function Logo() {
   return (
     <div>
-      <Image src="/logo.png" width={100} height={100} alt="Logo" />
+      <Link href={"./"}>
+        <Image src="/logo.png" width={110} height={110} alt="Logo" />
+      </Link>
     </div>
   );
 }
