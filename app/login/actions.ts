@@ -44,3 +44,12 @@ export async function signup(formData: FormData) {
   revalidatePath("/", "layout");
   redirect("/");
 }
+
+export async function handleSignInWithGoogle(response) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.signInWithIdToken({
+    provider: "google",
+    token: response.credential,
+  });
+}

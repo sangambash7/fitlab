@@ -1,4 +1,13 @@
 import { signup } from "@/app/login/actions";
+import { z } from "zod";
+
+const UserSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(8, { message: "Must be 8 or more characters long" }),
+  retype_password: z
+    .string()
+    .min(8, { message: "Must be 8 or more characters long" }),
+});
 
 interface SignUpProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,6 +40,16 @@ function SignUp({ setSignUp }: SignUpProps) {
             className="bg-slate-50 border"
             id="password"
             name="password"
+            type="password"
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password">Retype password:</label>
+          <input
+            className="bg-slate-50 border"
+            id="password"
+            name="retype_password"
             type="password"
             required
           />

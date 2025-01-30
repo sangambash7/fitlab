@@ -32,7 +32,7 @@ function Navbar({ children }) {
         pathname === "/"
           ? isScrolled
             ? "bg-[#1B4A8E] py-4 sticky top-0"
-            : "bg-gray-600 bg-opacity-80 py-3 absolute"
+            : "bg-gray-600 bg-opacity-70 py-3 absolute"
           : "bg-[#1B4A8E] py-4 sticky top-0"
       }  flex justify-center transition-all duration-300`}
     >

@@ -41,7 +41,6 @@ function SignIn({ setSignUp }: SignInProps) {
         >
           Log in
         </button>
-        <br />
       </form>
     </>
   );
