@@ -15,7 +15,6 @@ async function AuthArea() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
   const user = data?.user;
-  console.log(data, user);
 
   return (
     <>
