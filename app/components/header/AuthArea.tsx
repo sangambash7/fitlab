@@ -1,55 +1,60 @@
-// "use client";
-
-import { signOut, getUser } from "@/actions/authActions";
+import Link from "next/link";
+import { signOut } from "@/actions/authActions";
 import { createClient } from "@/utils/supabase/server";
-// import { useEffect, useState } from "react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 async function AuthArea() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
   const user = data?.user;
   console.log(data, user);
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect(() => {
-  //   async function checkUser() {
-  //     const supabase = await createClient();
-  //     const { data } = await supabase.auth.getUser();
-  //     if (data) setIsAuthenticated(true);
-  //   }
-
-  //   checkUser();
-  // }, []);
-
-  // async function SignOut() {
-  //   const supabase = await createClient();
-
-  //   const { error } = await supabase.auth.signOut();
-  // }
 
   return (
     <>
       {!user ? (
         <>
           <button className="bg-slate-100 text-blue-700 rounded-md py-1 px-4">
-            Login
+            <Link href="./login">Login</Link>
           </button>
           <button className="bg-blue-700 text-white rounded-md py-1 px-4">
-            Join
+            <Link href="./login">Join</Link>
           </button>
         </>
       ) : (
-        <button className="bg-slate-100 text-blue-700 rounded-md py-1 px-4">
-          My Profile
-          {/* <button onClick={signOut}>
-            <img
-              src="/profile-icon.png"
-              width="30"
-              style={{ backgroundImage: "#E5C16E" }}
-            />
-            Sign Out
-          </button> */}
-        </button>
+        <div className="bg-slate-100 text-blue-700 hover:bg-slate-300 rounded-md py-1 px-4">
+          {/*  */}
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div>My Account &#x21b4;</div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Link href={"./profile"} className="text-[1rem]">
+                  Profile
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={"./profile/orders"} className="text-[1rem]">
+                  Orders
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <button onClick={signOut} className="text-[1rem] font-bold">
+                  Sign Out
+                </button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       )}
     </>
   );
