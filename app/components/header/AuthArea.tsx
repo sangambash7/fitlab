@@ -1,29 +1,35 @@
-"use client";
-import { createClient } from "@/utils/supabase/client";
-import { useEffect, useState } from "react";
+// "use client";
 
-function AuthArea() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+import { signOut, getUser } from "@/actions/authActions";
+import { createClient } from "@/utils/supabase/server";
+// import { useEffect, useState } from "react";
 
-  useEffect(() => {
-    async function checkUser() {
-      const supabase = await createClient();
-      const { data } = await supabase.auth.getUser();
-      if (data) setIsAuthenticated(true);
-    }
+async function AuthArea() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  const user = data?.user;
+  console.log(data, user);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    checkUser();
-  }, []);
+  // useEffect(() => {
+  //   async function checkUser() {
+  //     const supabase = await createClient();
+  //     const { data } = await supabase.auth.getUser();
+  //     if (data) setIsAuthenticated(true);
+  //   }
 
-  async function SignOut() {
-    const supabase = await createClient();
+  //   checkUser();
+  // }, []);
 
-    const { error } = await supabase.auth.signOut();
-  }
+  // async function SignOut() {
+  //   const supabase = await createClient();
+
+  //   const { error } = await supabase.auth.signOut();
+  // }
 
   return (
     <>
-      {!isAuthenticated ? (
+      {!user ? (
         <>
           <button className="bg-slate-100 text-blue-700 rounded-md py-1 px-4">
             Login
@@ -33,7 +39,17 @@ function AuthArea() {
           </button>
         </>
       ) : (
-        <button onClick={SignOut}>Sign Out</button>
+        <button className="bg-slate-100 text-blue-700 rounded-md py-1 px-4">
+          My Profile
+          {/* <button onClick={signOut}>
+            <img
+              src="/profile-icon.png"
+              width="30"
+              style={{ backgroundImage: "#E5C16E" }}
+            />
+            Sign Out
+          </button> */}
+        </button>
       )}
     </>
   );
