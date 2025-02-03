@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
 import { getSubscription } from "@/actions/stripeActions";
 

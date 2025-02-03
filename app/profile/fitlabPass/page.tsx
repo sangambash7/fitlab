@@ -1,5 +1,6 @@
+import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
-import { getSubscription } from "@/actions/stripeActions";
+import { getSubscription, cancelSubscription } from "@/actions/stripeActions";
 
 async function FitlabPass() {
   const monthPriceID = "price_1QnoSKI0TWu0X0NTWMp1ROWP";
@@ -16,28 +17,41 @@ async function FitlabPass() {
 
   const priceID = subscription?.items?.data[0].price.id;
   const subscriptionItems = subscription?.items?.data[0];
-
-  console.log("console from fitlab Pass: profile", subscription);
+  console.log(subscriptionItems);
 
   return (
     <>
-      <h1 className="text-3xl">FitLab Pass</h1>
+      <div className="flex">
+        <h1 className="text-3xl">FitLab Pass</h1>
+      </div>
       {subscription.status === "active" ? (
-        <div>
-          <div className="text-green-500 italic">active</div>
-          <div className="flex flex-col mt-4">
+        <div className="w-full">
+          <hr></hr>
+          <div className="flex w-full justify-between my-4">
+            <h1 className="font-semibold">Membership</h1>
+            <div className="text-green-500">✅ Active</div>
+          </div>
+          <hr></hr>
+          <div className="flex w-full justify-between my-4">
+            <h1 className="font-semibold">Price</h1>
             <div>
-              <span className="font-bold">Packet price:</span>{" "}
               {subscriptionItems?.plan.amount / 100}{" "}
               {subscriptionItems?.plan.currency.toUpperCase()}
             </div>
-            <div>
-              <span className="font-bold">Billing frequency:</span> every{" "}
-              {subscriptionItems?.plan.interval_count}{" "}
-              {subscriptionItems?.plan.interval}
-            </div>
           </div>
           <hr></hr>
+          <div className="flex w-full justify-between my-4">
+            <h1 className="font-semibold">Billing frequency</h1>
+            <div className="flex flex-col items-end">
+              <div>
+                {subscriptionItems?.plan.interval_count}{" "}
+                {subscriptionItems?.plan.interval}
+              </div>
+              <div>
+                <button className="text-red-700">Cancel membership</button>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div>not active</div>

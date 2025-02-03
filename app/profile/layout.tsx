@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import ProfileNavlink from "../components/profile/ProfileNavlink";
+
 import { createClient } from "@/utils/supabase/server";
 import { getSubscription } from "@/actions/stripeActions";
 
@@ -33,7 +34,6 @@ async function layout({
       : null;
 
   const priceID = subscription?.items?.data[0].price.id;
-  console.log("consoled from layout: ", user);
 
   return (
     <main className="flex justify-center">
@@ -54,22 +54,10 @@ async function layout({
             )}
           </div>
           <ul className="flex flex-col">
-            <li className=" transition-padding-all duration-300 hover:ps-1 hover:underline">
-              <button className="italic font-bold text-lg">
-                <Link href={"/profile"}>My Dashboard</Link>
-              </button>
-            </li>
-            <li className="transition-padding-all duration-300 hover:ps-1 hover:underline">
-              <button>
-                <Link href={"/profile/orders"}>Order History</Link>
-              </button>
-            </li>
-            <li className="transition-padding-all duration-300 hover:ps-1 hover:underline">
-              <button>
-                <Link href={"/profile/fitlabPass"}>FitLab Pass</Link>
-              </button>
-            </li>
-            <li className="transition-padding-all duration-300 hover:ps-1 hover:underline">
+            <ProfileNavlink dest="/profile" label="My Dashboard" />
+            <ProfileNavlink dest="/profile/orders" label="Order History" />
+            <ProfileNavlink dest="/profile/fitlabPass" label="FitLab Pass" />
+            <li className="transition-padding-all duration-300 hover:ps-4 hover:underline">
               <button>Log Out</button>
             </li>
           </ul>

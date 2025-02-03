@@ -66,3 +66,17 @@ export async function getSubscription(subscriptionID: string) {
     console.error(error);
   }
 }
+
+export async function cancelSubscription(subscriptionID: string) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  try {
+    const subscription = await stripe.subscriptions.cancel(subscriptionID);
+
+    return subscription;
+  } catch (error) {
+    console.error(error);
+  }
+}
