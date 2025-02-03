@@ -12,14 +12,26 @@ export async function signOut() {
   await supabase.auth.signOut();
 }
 
-export async function createSubscriptionSupabase() {
+export async function createSubscriptionSupabase(subscriptionID) {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("profiles")
-    .insert([{ stripe_isSubscribed: true }]);
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
 
-  if (error) {
-    console.error("Error applying subscription:", error);
+  if (authError || !user) {
+    console.error("Cant retrieve user:", authError);
     return null;
   }
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .insert([{ user_id: user.id, stripe_subscriptionID: subscriptionID }]);
+
+  if (error) {
+    console.log("Error saving subscriptionID: ", error.message);
+    return null;
+  }
+
+  return data;
 }

@@ -15,7 +15,7 @@ async function checkSubscription() {
 
 async function fetchData() {
   const data = await checkSubscription();
-  console.log("data: ", data); // This will log the resolved data
+  console.log("data: ", data);
 }
 
 fetchData();

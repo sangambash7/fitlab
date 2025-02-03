@@ -38,3 +38,31 @@ export async function createSubscription(customerID, priceID) {
     console.error(error);
   }
 }
+
+export async function getBySessionID(sessionID: string) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionID);
+
+    return session;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSubscription(subscriptionID: string) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  try {
+    const subscription = await stripe.subscriptions.retrieve(subscriptionID);
+
+    return subscription;
+  } catch (error) {
+    console.error(error);
+  }
+}
