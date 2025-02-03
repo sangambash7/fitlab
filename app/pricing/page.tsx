@@ -23,14 +23,17 @@ fetchData();
 function Pricing() {
   const [interval, setInterval] = useState("");
 
-  async function handleSubscription(time: "month" | "year") {
+  async function handleSubscription(time: "month" | "year" | "quarter") {
     const supabase = await createClient();
     const { data } = await supabase.auth.getUser();
 
-    const priceID =
-      time === "month"
-        ? "price_1QnoSKI0TWu0X0NTWMp1ROWP"
-        : "price_1QnoT9I0TWu0X0NTE08Ldx2R";
+    const priceObject = {
+      month: "price_1QnoSKI0TWu0X0NTWMp1ROWP",
+      quarter: "price_1QnoSiI0TWu0X0NT6hzUtYun",
+      year: "price_1QnoT9I0TWu0X0NTE08Ldx2R",
+    };
+
+    const priceID = priceObject[time];
     const customerID = data?.user?.user_metadata?.stripeCustomerID;
 
     const response = await fetch("/api/stripe/create-subscription", {
@@ -76,82 +79,310 @@ function Pricing() {
           <div className="bg-[#F1F1F1] mt-4 flex flex-col md:flex-row items-center">
             {/* MONTHLY */}
             <div
-              className="cursor-pointer"
+              className="cursor-pointer h-full"
               onClick={() => setInterval("monthly")}
             >
               <div
-                className={`flex flex-col shadow-lg border hover:border-[#1B4A8E] ${
-                  interval === "monthly" && "border-[#1B4A8E] border-[0.15rem]"
-                }  rounded-md bg-white text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px]`}
+                className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+                  interval === "monthly"
+                    ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
+                    : "bg-white"
+                }  `}
               >
-                <h2 className="font-bold text-2xl">Monthly</h2>
-                <h2 className="font-bold text-2xl">$99</h2>
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  Monthly
+                </h2>
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  ₾99
+                </h2>
 
-                <div className="bg-[#1B4A8E] text-white hover:bg-blue-600 text-sm px-6 py-2 rounded-3xl self-center">
+                <div
+                  className={` text-sm px-6 py-2 rounded-3xl self-center ${
+                    interval === "monthly"
+                      ? "bg-white text-black hover:bg-slate-100 "
+                      : "bg-[#1B4A8E] text-white hover:bg-blue-600 "
+                  }`}
+                >
                   <button onClick={() => handleSubscription("month")}>
                     Buy 1 month
                   </button>
                 </div>
-                <div className="flex flex-col text-start text-sm">
+                <div
+                  className={`flex flex-col text-start text-sm ${
+                    interval === "monthly" ? "text-white" : "text-black"
+                  }`}
+                >
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Monthly payment
+                    <span
+                      className={`${
+                        interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Billed once in a month
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Unlimited access
-                    to all FitLab clubs
+                    <span
+                      className={`${
+                        interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all FitLab clubs
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Unlimited access
-                    to all group activities
+                    <span
+                      className={`${
+                        interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all group activities
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Fitness areas with
-                    high-quality equipment
+                    <span
+                      className={`${
+                        interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Fitness areas with high-quality equipment
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Changing rooms,
-                    Showers, Wifi
+                    <span
+                      className={`${
+                        interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Changing rooms, Showers, Wifi
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* QUARTER */}
+            <div
+              className="cursor-pointer h-full"
+              onClick={() => setInterval("quarter")}
+            >
+              <div
+                className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+                  interval === "quarter"
+                    ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
+                    : "bg-white"
+                }  `}
+              >
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  Monthly
+                </h2>
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  ₾250
+                </h2>
+
+                <div
+                  className={` text-sm px-6 py-2 rounded-3xl self-center ${
+                    interval === "quarter"
+                      ? "bg-white text-black hover:bg-slate-100 "
+                      : "bg-[#1B4A8E] text-white hover:bg-blue-600 "
+                  }`}
+                >
+                  <button onClick={() => handleSubscription("quarter")}>
+                    Buy 3 months
+                  </button>
+                </div>
+                <div
+                  className={`flex flex-col text-start text-sm ${
+                    interval === "quarter" ? "text-white" : "text-black"
+                  }`}
+                >
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Billed once in a quarter
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all FitLab clubs
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all group activities
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Fitness areas with high-quality equipment
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Changing rooms, Showers, Wifi
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Includes 8 personal training sessions from our proffesional
+                    staff
                   </div>
                 </div>
               </div>
             </div>
             {/* YEARLY */}
             <div
-              className="cursor-pointer"
-              onClick={() => setInterval("yearly")}
+              className="cursor-pointer h-full"
+              onClick={() => setInterval("year")}
             >
               <div
-                className={`flex flex-col shadow-lg border hover:border-[#1B4A8E] ${
-                  interval === "yearly" && "border-[#1B4A8E] border-[0.15rem]"
-                }  rounded-md bg-white text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px]`}
+                className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+                  interval === "year"
+                    ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
+                    : "bg-white"
+                }  `}
               >
-                <h2 className="font-bold text-2xl">Yearly</h2>
-                <h2 className="font-bold text-2xl">$999</h2>
-                <div className="bg-[#1B4A8E] text-white hover:bg-blue-600 text-sm px-6 py-2 rounded-3xl self-center">
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  Year
+                </h2>
+                <h2
+                  className={`font-bold text-2xl ${
+                    interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                  }`}
+                >
+                  ₾800
+                </h2>
+
+                <div
+                  className={` text-sm px-6 py-2 rounded-3xl self-center ${
+                    interval === "year"
+                      ? "bg-white text-black hover:bg-slate-100 "
+                      : "bg-[#1B4A8E] text-white hover:bg-blue-600 "
+                  }`}
+                >
                   <button onClick={() => handleSubscription("year")}>
                     Buy 1 year
                   </button>
                 </div>
-
-                <div className="flex flex-col text-start text-sm">
+                <div
+                  className={`flex flex-col text-start text-sm ${
+                    interval === "year" ? "text-white" : "text-black"
+                  }`}
+                >
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Yearly payment
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Billed once a year
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Unlimited access
-                    to all FitLab clubs
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all FitLab clubs
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Unlimited access
-                    to all group activities
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Unlimited access to all group activities
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Fitness areas with
-                    high-quality equipment
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Fitness areas with high-quality equipment
                   </div>
                   <div>
-                    <span className="text-[#1B4A8E]">✔</span> Changing rooms,
-                    Showers, Wifi
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Changing rooms, Showers, Wifi
+                  </div>
+                  <div>
+                    <span
+                      className={`${
+                        interval === "year" ? "text-white" : "text-[#1B4A8E]"
+                      }`}
+                    >
+                      ✔
+                    </span>{" "}
+                    Includes 20 personal training sessions from our proffesional
+                    staff
                   </div>
                 </div>
               </div>

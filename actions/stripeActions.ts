@@ -1,6 +1,7 @@
 "use server";
 
 import Stripe from "stripe";
+import { createClient } from "@/utils/supabase/server";
 
 export async function createCustomerStripe(fullname: string, email: string) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -67,13 +68,29 @@ export async function getSubscription(subscriptionID: string) {
   }
 }
 
-export async function cancelSubscription(subscriptionID: string) {
+export async function cancelSubscriptionByID() {
+  const supabase = await createClient();
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2025-01-27.acacia",
   });
+  // console.log(
+  //   "from actions passed from client component: ",
+  //   stripeSubscriptionID
+  // );
+
+  const { data: profile, error } = await supabase
+    .from("profiles")
+    .select("stripe_subscriptionID");
+  const stripeSubscriptionID = profile[0]?.stripe_subscriptionID;
+  console.log("from stripe actions", stripeSubscriptionID);
+  // console.log(profile);
 
   try {
-    const subscription = await stripe.subscriptions.cancel(subscriptionID);
+    const subscription = await stripe.subscriptions.cancel(
+      stripeSubscriptionID
+    );
+
+    console.log("try block run: ", subscription);
 
     return subscription;
   } catch (error) {
