@@ -33,10 +33,9 @@ async function Profile() {
   console.log(user);
 
   return (
-    <>
-      {" "}
+    <div className="flex flex-col items-center sm:items-start">
       <h1 className="text-3xl">Personal information</h1>
-      <form className="pt-4 w-[50%]">
+      <form className="pt-4 w-[80%] md:w-[60%] lg:w-[50%]">
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Full name:</label>
           <input
@@ -75,7 +74,7 @@ async function Profile() {
           Save
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

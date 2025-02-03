@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { getSubscription, cancelSubscription } from "@/actions/stripeActions";
 
@@ -10,7 +10,7 @@ async function FitlabPass() {
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
-  const stripeSubscriptionID = profile[0].stripe_subscriptionID;
+  const stripeSubscriptionID = profile[0]?.stripe_subscriptionID;
 
   const subscription =
     profile?.length > 0 ? await getSubscription(stripeSubscriptionID) : null;
@@ -20,11 +20,10 @@ async function FitlabPass() {
   console.log(subscriptionItems);
 
   return (
-    <>
-      <div className="flex">
-        <h1 className="text-3xl">FitLab Pass</h1>
-      </div>
-      {subscription.status === "active" ? (
+    <div className="w-full lg:w-[500px]">
+      <h1 className="text-3xl">FitLab Pass</h1>
+
+      {subscription?.status === "active" ? (
         <div className="w-full">
           <hr></hr>
           <div className="flex w-full justify-between my-4">
@@ -54,9 +53,22 @@ async function FitlabPass() {
           </div>
         </div>
       ) : (
-        <div>not active</div>
+        <div className="w-full">
+          <hr></hr>
+          <div className="flex w-full justify-between my-4">
+            <h1 className="font-semibold">Membership</h1>
+            <div className="text-red-500">❌ Not active</div>
+          </div>
+          <hr></hr>
+          <div className="flex w-full justify-between my-4">
+            <h1 className="font-semibold">Price</h1>
+            <div className="text-[#1B4A8E] text-lg font-semibold">
+              <Link href={"/pricing"}>See our pricelist</Link>
+            </div>
+          </div>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
