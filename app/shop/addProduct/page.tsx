@@ -1,12 +1,17 @@
 "use client";
+
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import {
   AddProductToStripe,
   AddPrPriceToStripe,
 } from "@/actions/stripeActions";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
+import { useRouter } from "next/navigation";
 
 function page() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [title, setTitle] = useState("");
   const [titleGEO, setTitleGEO] = useState("");
   const [brand, setBrand] = useState("");
@@ -15,8 +20,11 @@ function page() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
 
+  const router = useRouter();
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const supabase = await createClient();
 
     const { data, error } = await supabase
@@ -59,6 +67,8 @@ function page() {
         stripe_priceID: priceStripe?.priceID,
       })
       .eq("id", data[0]?.id);
+
+    router.push(`/shop/${data[0]?.id}`);
   };
 
   return (
@@ -67,7 +77,7 @@ function page() {
         <div className="flex flex-col w-full">
           <h1 className="text-3xl text-center">Add A Product</h1>
           <form
-            className="mx-auto my-3 w-[70%] flex flex-col gap-4 p-4"
+            className="mx-auto mt-3 w-[70%] flex flex-col gap-4 p-4"
             onSubmit={handleSubmit}
           >
             <label className="flex flex-col text-lg font-medium text-gray-700">
@@ -157,6 +167,11 @@ function page() {
               CREATE
             </button>
           </form>
+          {isLoading && (
+            <div className="flex justify-center">
+              <LoadingSpinner />
+            </div>
+          )}
         </div>
       </div>
     </main>

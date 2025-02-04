@@ -2,9 +2,9 @@ import Image from "next/image";
 import ProductClient from "@/app/components/shop/ProductClient";
 
 async function ProductPage({ params }) {
-  const { product } = await params;
+  const { productID } = await params;
 
-  console.log(product);
+  console.log(productID);
   return (
     <main className="flex justify-center">
       <div className="w-[1200px] flex m-8 gap-10">
