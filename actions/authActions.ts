@@ -12,7 +12,7 @@ export async function signOut() {
   await supabase.auth.signOut();
 }
 
-export async function createSubscriptionSupabase(subscriptionID) {
+export async function createSubscriptionSupabase(subscriptionID: string) {
   const supabase = await createClient();
   const {
     data: { user },
