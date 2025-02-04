@@ -1,10 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
-import { getSubscription } from "@/actions/stripeActions";
 
 async function Profile() {
-  const monthPriceID = "price_1QnoSKI0TWu0X0NTWMp1ROWP";
-  const yearPriceID = "price_1QnoT9I0TWu0X0NTE08Ldx2R";
-
   const supabase = await createClient();
   const {
     data: { user },
@@ -15,22 +11,6 @@ async function Profile() {
     console.log("Cant retrieve user: ", authError);
     return null;
   }
-
-  const { data: profile, error } = await supabase
-    .from("profiles")
-    .select("stripe_subscriptionID");
-
-  if (error) {
-    console.log("Error retrieving subscriptionID from database: ", error);
-  }
-
-  const subscription =
-    profile?.length > 0
-      ? await getSubscription(profile[0].stripe_subscriptionID)
-      : null;
-
-  const priceID = subscription?.items?.data[0].price.id;
-  console.log(user);
 
   return (
     <div className="flex flex-col items-center sm:items-start">

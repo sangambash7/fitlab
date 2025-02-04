@@ -10,20 +10,18 @@ async function FitlabPass() {
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
-  const stripeSubscriptionID = profile[0]?.stripe_subscriptionID;
+  const stripeSubscriptionID = profile && profile[0]?.stripe_subscriptionID;
 
   const subscription =
-    profile?.length > 0 ? await getSubscription(stripeSubscriptionID) : null;
+    profile && profile?.length > 0
+      ? await getSubscription(stripeSubscriptionID)
+      : null;
 
-  const priceID = subscription?.items?.data[0].price.id;
   const subscriptionItems = subscription?.items?.data[0];
 
   const subEndTime = new Date(
     subscription?.current_period_end * 1000
   ).toLocaleString();
-
-  console.log(subscription);
-  console.log(subscriptionItems);
 
   return (
     <div className="w-full lg:w-[500px]">
