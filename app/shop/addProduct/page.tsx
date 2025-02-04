@@ -19,8 +19,17 @@ function page() {
   const [availability, setAvailability] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
   const router = useRouter();
+
+  const handleFileChange = async (e) => {
+    const file = e?.target?.files[0];
+    if (file) {
+      setImageFile(file);
+    }
+    return;
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,17 +56,30 @@ function page() {
       return;
     }
 
-    const productStripe = await AddProductToStripe(title); //Creating Product In Stripe
+    // Uploading picture
+    if (imageFile) {
+      const { data: dataUpload, error: errorUpload } = await supabase.storage
+        .from("fitlab_pictures")
+        .upload(`product_images/${imageFile?.name}`, imageFile);
+    }
+
+    const { data: dataStorage } = await supabase.storage
+      .from("fitlab_pictures")
+      .getPublicUrl(imageFile?.name);
+
+    //Creating Product In Stripe
+    const productStripe = await AddProductToStripe(title);
 
     if (!productStripe) {
       console.error(error);
       return;
     }
 
+    //Creating Price In Stripe
     const priceStripe = await AddPrPriceToStripe(
       productStripe.productID,
       Number(price)
-    ); //Creating Price In Stripe
+    );
 
     //Sending Stripe Product and Price IDs to supabase
     const { data: dataUpdate, error: errorUpdate } = await supabase
@@ -65,6 +87,7 @@ function page() {
       .update({
         stripe_productID: priceStripe?.productID,
         stripe_priceID: priceStripe?.priceID,
+        picture: dataStorage?.publicUrl,
       })
       .eq("id", data[0]?.id);
 
@@ -140,16 +163,6 @@ function page() {
                 onChange={(e) => setWeight(e.target.value)}
               />
             </label>
-            {/* <label className="flex flex-col text-lg font-medium text-gray-700">
-              Upload Image:
-              <input
-                className="p-2 w-full rounded-lg border-2 border-black"
-                type="text"
-                required
-                // value={price}
-                // onChange={(e) => setPrice(e.target.value)}
-              />
-            </label> */}
             <label className="flex flex-col text-lg font-medium text-gray-700">
               Price (in ₾ currency):
               <input
@@ -158,6 +171,17 @@ function page() {
                 required
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+              />
+            </label>
+            <label className="flex flex-col text-lg font-medium text-gray-700">
+              Image:
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                data-cy="image"
+                onChange={handleFileChange}
               />
             </label>
             <button
