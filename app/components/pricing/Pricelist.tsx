@@ -54,7 +54,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
 
   return (
     <div
-      className={`bg-[#F1F1F1] mt-4 flex flex-col md:flex-row items-center ${
+      className={`bg-[#F1F1F1] mt-4 pt-2 lg:pt-0 flex flex-col lg:flex-row items-center ${
         hasMembership && "pointer-events-none opacity-60 "
       } `}
     >
@@ -64,7 +64,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
         onClick={() => setInterval("monthly")}
       >
         <div
-          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[450px] lg:w-[350px] ${
             interval === "monthly"
               ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
               : "bg-white"
@@ -77,13 +77,22 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
           >
             Monthly
           </h2>
-          <h2
-            className={`font-bold text-2xl ${
-              interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
-            }`}
-          >
-            ₾99
-          </h2>
+          <div>
+            <h2
+              className={`font-bold text-2xl ${
+                interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              ₾99 /month
+            </h2>
+            <h3
+              className={`font-bold text-sm ${
+                interval === "monthly" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              billed monthly
+            </h3>
+          </div>
 
           <div
             className={` text-sm px-6 py-2 rounded-3xl self-center ${
@@ -160,7 +169,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
         onClick={() => setInterval("quarter")}
       >
         <div
-          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[450px] lg:w-[350px] ${
             interval === "quarter"
               ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
               : "bg-white"
@@ -171,15 +180,24 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
               interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
             }`}
           >
-            Monthly
+            Quarterly
           </h2>
-          <h2
-            className={`font-bold text-2xl ${
-              interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
-            }`}
-          >
-            ₾250
-          </h2>
+          <div>
+            <h2
+              className={`font-bold text-2xl ${
+                interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              ₾83.33 /month
+            </h2>
+            <h3
+              className={`font-bold text-sm ${
+                interval === "quarter" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              billed every 3 months
+            </h3>
+          </div>
 
           <div
             className={` text-sm px-6 py-2 rounded-3xl self-center ${
@@ -266,7 +284,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
         onClick={() => setInterval("year")}
       >
         <div
-          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[350px] ${
+          className={`flex flex-col shadow-lg border h-full hover:border-[#1B4A8E] rounded-md  text-center gap-8 px-8 pt-2 pb-8 w-[450px] md:w-[450px] lg:w-[350px] ${
             interval === "year"
               ? "border-[#1B4A8E] bg-[#1B4A8E] border-[0.15rem]"
               : "bg-white"
@@ -277,15 +295,24 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
               interval === "year" ? "text-white" : "text-[#1B4A8E]"
             }`}
           >
-            Year
+            Yearly
           </h2>
-          <h2
-            className={`font-bold text-2xl ${
-              interval === "year" ? "text-white" : "text-[#1B4A8E]"
-            }`}
-          >
-            ₾800
-          </h2>
+          <div>
+            <h2
+              className={`font-bold text-2xl ${
+                interval === "year" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              ₾66.67 /month
+            </h2>
+            <h3
+              className={`font-bold text-sm ${
+                interval === "year" ? "text-white" : "text-[#1B4A8E]"
+              }`}
+            >
+              billed anually
+            </h3>
+          </div>
 
           <div
             className={` text-sm px-6 py-2 rounded-3xl self-center ${
