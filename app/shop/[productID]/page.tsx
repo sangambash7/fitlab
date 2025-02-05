@@ -3,11 +3,31 @@
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/server";
 import getStripe from "@/utils/get-stripejs";
+import { getBySessionID } from "@/actions/stripeActions";
 import ProductClient from "@/app/components/shop/ProductClient";
 
-async function ProductPage({ params }) {
-  const { productID } = await params;
+async function ProductPage({ params, searchParams }) {
   const supabase = await createClient();
+  const { productID } = await params;
+  const { session_id } = await searchParams;
+
+  const { data: user } = await supabase.auth.getUser();
+  console.log(user);
+
+  // Check succesfull payment
+  if (session_id) {
+    const session = await getBySessionID(session_id);
+    console.log("session", session, session?.payment_status);
+
+    if (session?.payment_status) {
+      const { data, error } = await supabase
+        .from("orders")
+        .insert([{ price_total: session.amount_total, product_id: productID }])
+        .select("*");
+
+      console.log("data, error", data, error);
+    }
+  }
 
   const { data, error } = await supabase
     .from("products")
