@@ -65,7 +65,7 @@ function page() {
 
     const { data: dataStorage } = await supabase.storage
       .from("fitlab_pictures")
-      .getPublicUrl(imageFile?.name);
+      .getPublicUrl(`product_images/${imageFile?.name}`);
 
     //Creating Product In Stripe
     const productStripe = await AddProductToStripe(title);
