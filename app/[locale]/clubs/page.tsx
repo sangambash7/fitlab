@@ -1,5 +1,5 @@
 "use client";
-
+import { useTranslations } from "next-intl";
 import ClubInfo from "../components/clubs/ClubInfo";
 import { useState } from "react";
 
@@ -67,6 +67,7 @@ const clubs = [
 ];
 
 function Clubs() {
+  const t = useTranslations("Clubs");
   const [club, setClub] = useState("");
 
   return (
@@ -74,16 +75,14 @@ function Clubs() {
       <div className="w-[1200px] flex mt-8 gap-10">
         <div className="w-full flex flex-col">
           <div className="mx-4 xl:mx-0">
-            <h1 className="text-[#1B4A8E] dark:text-white text-[3rem] font-bold">
-              Clubs
-            </h1>
-            <p className="w-100 md:w-[60%] text-[20px]">
-              FitLab is the biggest sports clubs chain in Georgia; it operates 5
-              clubs in Georgia, including 3 clubs in capital Tbilisi. Spacious
-              training halls, well equipped gyms, always new and versatile
-              training programs, and our best trainers await you in all of our
-              clubs. Pick the club you like and start training already today!
-            </p>
+            <div className="flex md:justify-center xl:justify-start mb-4">
+              <h1 className="text-[#1B4A8E] dark:text-white text-[3rem] font-bold">
+                {t("heading")}
+              </h1>
+            </div>
+            <div className="flex md:justify-center xl:justify-start">
+              <p className="w-100 md:w-[60%] text-[20px]">{t("description")}</p>
+            </div>
           </div>
           <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-5 my-8">
             <div

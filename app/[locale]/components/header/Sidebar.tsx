@@ -31,7 +31,7 @@ function Sidebar() {
         <div
           className={`md:hidden w-full absolute  ${
             !isOpen ? `right-[-100%]` : `right-0`
-          } top-12 z-10 bg-[#1B4A8E] transition-all duration-1000 ease-in-out`}
+          } top-12 z-10 bg-[#1B4A8E] dark:bg-slate-900 transition-all duration-1000 ease-in-out`}
         >
           <ul className="flex flex-col gap-3 ms-3">
             <NavItems />

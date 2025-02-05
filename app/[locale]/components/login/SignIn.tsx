@@ -1,4 +1,4 @@
-import { login } from "@/app/login/actions";
+import { login } from "../../login/actions";
 
 interface SignInProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;

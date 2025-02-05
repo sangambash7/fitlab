@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { createClient } from "@/utils/supabase/server";
 import { getSubscription } from "@/actions/stripeActions";
-import CancelSubscription from "@/app/components/profile/CancelSubscription";
+import CancelSubscription from "../../components/profile/CancelSubscription";
 
 async function FitlabPass() {
   const supabase = await createClient();

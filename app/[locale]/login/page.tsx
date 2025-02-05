@@ -11,7 +11,7 @@ function Login() {
     <main className="flex justify-center h-screen overflow-hidden">
       <div className="grid md:grid-cols-2 ">
         <div className="hidden md:block">
-          <img alt="Intro Image" src="login/login.jpg" className="" />
+          <img alt="Intro Image" src="/login/login.jpg" className="" />
         </div>
         <div className="flex flex-col items-center justify-center md:justify-start md:mt-[10rem]">
           {!signUp ? (

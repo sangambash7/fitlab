@@ -11,8 +11,10 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
 
   async function handleSubscription(time: "month" | "year" | "quarter") {
     setIsLoading(true);
+    console.log("first run after loading set to true");
     const supabase = await createClient();
     const { data } = await supabase.auth.getUser();
+    console.log("data from supabase user", data);
 
     const priceObject = {
       month: "price_1QnoSKI0TWu0X0NTWMp1ROWP",
@@ -22,6 +24,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
 
     const priceID = priceObject[time];
     const customerID = data?.user?.user_metadata?.stripeCustomerID;
+    console.log(priceID, customerID);
 
     const response = await fetch("/api/stripe/create-subscription", {
       method: "POST",
@@ -32,8 +35,11 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
       }),
     });
 
+    console.log("response", response);
+
     const { sessionId } = await response.json();
     const stripe = await getStripe();
+    console.log("sessionId", sessionId);
 
     if (!stripe) {
       console.error("Stripe.js didn't load correctly.");

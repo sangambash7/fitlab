@@ -1,4 +1,4 @@
-import { signup } from "@/app/login/actions";
+import { signup } from "../../login/actions";
 import { z } from "zod";
 
 const UserSchema = z.object({

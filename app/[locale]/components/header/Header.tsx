@@ -1,12 +1,14 @@
 import Navbar from "./Navbar";
 import AuthArea from "./AuthArea";
 import ThemeToggler from "./ThemeToggler";
+import LangToggler from "./LangToggler";
 
 function Header() {
   return (
     <Navbar>
-      <ThemeToggler />
       <AuthArea />
+      <ThemeToggler />
+      <LangToggler />
     </Navbar>
   );
 }
