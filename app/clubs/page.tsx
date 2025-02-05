@@ -70,11 +70,13 @@ function Clubs() {
   const [club, setClub] = useState("");
 
   return (
-    <main className="flex justify-center">
+    <main className="flex justify-center dark:bg-black">
       <div className="w-[1200px] flex mt-8 gap-10">
         <div className="w-full flex flex-col">
           <div className="mx-4 xl:mx-0">
-            <h1 className="text-[#1B4A8E] text-[3rem] font-bold">Clubs</h1>
+            <h1 className="text-[#1B4A8E] dark:text-white text-[3rem] font-bold">
+              Clubs
+            </h1>
             <p className="w-100 md:w-[60%] text-[20px]">
               FitLab is the biggest sports clubs chain in Georgia; it operates 5
               clubs in Georgia, including 3 clubs in capital Tbilisi. Spacious
@@ -83,34 +85,34 @@ function Clubs() {
               clubs. Pick the club you like and start training already today!
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 my-8">
+          <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-5 my-8">
             <div
               onClick={() => setClub("Guramishvili")}
-              className="bg-[#fafafa] text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
+              className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
             >
               Guramishvili
             </div>
             <div
               onClick={() => setClub("Saburtalo")}
-              className="bg-[#fafafa] text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
+              className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
             >
               Saburtalo
             </div>
             <div
               onClick={() => setClub("Marjanishvili")}
-              className="bg-[#fafafa] text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
+              className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
             >
               Marjanishvili
             </div>
             <div
               onClick={() => setClub("Kutaisi")}
-              className="bg-[#fafafa] text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
+              className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
             >
               Kutaisi
             </div>
             <div
               onClick={() => setClub("Batumi")}
-              className="bg-[#fafafa] text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
+              className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"
             >
               Batumi
             </div>

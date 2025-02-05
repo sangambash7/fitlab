@@ -27,7 +27,7 @@ function SignUp({ setSignUp }: SignUpProps) {
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Full name:</label>
           <input
-            className="bg-slate-50 border"
+            className="bg-slate-50 border dark:text-black"
             id="fullname"
             name="fullname"
             type="fullname"
@@ -37,7 +37,7 @@ function SignUp({ setSignUp }: SignUpProps) {
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email:</label>
           <input
-            className="bg-slate-50 border"
+            className="bg-slate-50 border dark:text-black"
             id="email"
             name="email"
             type="email"
@@ -47,7 +47,7 @@ function SignUp({ setSignUp }: SignUpProps) {
         <div className="flex flex-col gap-2">
           <label htmlFor="password">Password:</label>
           <input
-            className="bg-slate-50 border"
+            className="bg-slate-50 border dark:text-black"
             id="password"
             name="password"
             type="password"
@@ -65,7 +65,7 @@ function SignUp({ setSignUp }: SignUpProps) {
           />
         </div> */}
         <button
-          className="border bg-[#1B4A8E] text-white text-xl w-full rounded-sm mt-5"
+          className="border bg-[#1B4A8E] dark:bg-slate-900 dark:font-bold text-white text-xl w-full rounded-sm mt-5"
           formAction={signup}
         >
           Sign up

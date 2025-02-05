@@ -3,6 +3,8 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { ThemeProvider } from "@/providers/theme-provider";
+import Head from "next/head";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -11,6 +13,11 @@ const rubik = Rubik({
 export const metadata: Metadata = {
   title: "FitLab",
   description: "App In Development",
+  head: (
+    <>
+      <meta name="color-scheme" content="light dark" />
+    </>
+  ),
 };
 
 export default function RootLayout({
@@ -21,9 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rubik.className} relative`}>
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
