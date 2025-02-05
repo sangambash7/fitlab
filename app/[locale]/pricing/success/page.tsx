@@ -1,6 +1,6 @@
 import { getBySessionID } from "@/actions/stripeActions";
 import { createSubscriptionSupabase } from "@/actions/authActions";
-import Pricelist from "@/app/components/pricing/Pricelist";
+import Pricelist from "../../components/pricing/Pricelist";
 
 async function Success({
   searchParams,

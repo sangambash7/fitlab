@@ -1,8 +1,8 @@
 "use client";
 
 import { useTheme } from "next-themes";
-
-import { Moon, MoonIcon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 function ThemeToggler() {
+  const t = useTranslations("Header");
   const { setTheme } = useTheme();
 
   return (
@@ -29,14 +30,23 @@ function ThemeToggler() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            Light
+          <DropdownMenuItem
+            onClick={() => setTheme("light")}
+            className="cursor-pointer"
+          >
+            {t("Light")}
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            Dark
+          <DropdownMenuItem
+            onClick={() => setTheme("dark")}
+            className="cursor-pointer"
+          >
+            {t("Dark")}
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("system")}>
-            System
+          <DropdownMenuItem
+            onClick={() => setTheme("system")}
+            className="cursor-pointer"
+          >
+            {t("System")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

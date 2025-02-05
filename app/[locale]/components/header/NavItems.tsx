@@ -1,38 +1,39 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 function NavItems() {
+  const t = useTranslations("Header");
   return (
     <>
-      {" "}
       <li>
         <button className="hover:text-[#DDD]">
-          <Link href={"/"}>Home</Link>
+          <Link href={"/"}>{t("Home")}</Link>
         </button>
       </li>
       <li>
         <button className="hover:text-[#DDD]">
-          <Link href={"/clubs"}>Clubs</Link>
+          <Link href={"/clubs"}>{t("Clubs")}</Link>
         </button>
       </li>
       <li>
         <button className="hover:text-[#DDD]">
-          <Link href={"/pricing"}>Pricing</Link>
+          <Link href={"/pricing"}>{t("Pricing")}</Link>
         </button>
       </li>
       <li>
         <button className="hover:text-[#DDD]">
           {" "}
-          <Link href={"/shop"}>Shop</Link>
+          <Link href={"/shop"}>{t("Shop")}</Link>
         </button>
       </li>
       <li>
         <button className="hover:text-[#DDD]">
-          <Link href={"/about"}>About Us</Link>
+          <Link href={"/about"}>{t("About Us")}</Link>
         </button>
       </li>{" "}
       <li>
         <button className="hover:text-[#DDD]">
-          <Link href={"/contact"}>Contact</Link>
+          <Link href={"/contact"}>{t("Contact")}</Link>
         </button>
       </li>
     </>

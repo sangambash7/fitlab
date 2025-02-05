@@ -1,0 +1,23 @@
+{
+  "Header": {
+    "Home": "Home",
+    "Clubs": "Clubs",
+    "Pricing": "Pricing",
+    "Shop": "Shop",
+    "About Us": "About Us",
+    "Contact": "Contact",
+    "My Account": "My Account",
+    "Profile": "Profile",
+    "Orders": "Orders",
+    "Log Out": "Log Out",
+    "Light": "Light",
+    "Dark": "Dark",
+    "System": "System",
+    "Login": "Authorization",
+    "Join": "Join"
+  },
+  "Clubs": {
+    "heading": "Clubs",
+    "description": "FitLab is the biggest sports clubs chain in Georgia; it operates 5 clubs in Georgia, including 3 clubs in capital Tbilisi. Spacious training halls, well equipped gyms, always new and versatile training programs, and our best trainers await you in all of our clubs. Pick the club you like and start training already today!"
+  }
+}
