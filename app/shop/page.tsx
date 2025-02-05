@@ -14,7 +14,7 @@ import Image from "next/image";
 function Shop() {
   return (
     <main className="flex justify-center">
-      <div className="w-[1200px] flex mt-8 gap-10">
+      <div className="w-[1200px] flex m-8 gap-10">
         {/* FILTERING */}
         <div className="flex flex-col my-1">
           {/* Categories */}
@@ -118,9 +118,9 @@ function Shop() {
             <div className="flex items-center">
               <input
                 placeholder="Search for anything..."
-                className="sm:w-[250px]"
+                className="sm:w-[250px] p-2 border"
               ></input>
-              <button className="">
+              <button className="text-lg">
                 <CiSearch />
               </button>
             </div>

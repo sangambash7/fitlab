@@ -73,27 +73,61 @@ export async function cancelSubscriptionByID() {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2025-01-27.acacia",
   });
-  // console.log(
-  //   "from actions passed from client component: ",
-  //   stripeSubscriptionID
-  // );
 
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
   const stripeSubscriptionID = profile[0]?.stripe_subscriptionID;
-  console.log("from stripe actions", stripeSubscriptionID);
-  // console.log(profile);
 
   try {
     const subscription = await stripe.subscriptions.cancel(
       stripeSubscriptionID
     );
 
-    console.log("try block run: ", subscription);
-
     return subscription;
   } catch (error) {
     console.error(error);
+  }
+}
+
+export async function AddProductToStripe(title: string) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  try {
+    const createProduct = await stripe.products.create({
+      name: title,
+    });
+
+    return {
+      productID: createProduct.id,
+      name: createProduct.name,
+    };
+  } catch (error) {
+    console.error("Error from Stripe: ", error);
+  }
+}
+
+export async function AddPrPriceToStripe(productID: string, price: number) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+    apiVersion: "2025-01-27.acacia",
+  });
+
+  try {
+    const createPrice = await stripe.prices.create({
+      unit_amount: price,
+      currency: "gel",
+      product: productID,
+    });
+
+    return {
+      unit_amount: createPrice.unit_amount,
+      currency: createPrice.currency,
+      productID: createPrice.product,
+      priceID: createPrice.id,
+    };
+  } catch (error) {
+    console.error("Error from Stripe (setting price): ", error);
   }
 }
