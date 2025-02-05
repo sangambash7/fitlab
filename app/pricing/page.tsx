@@ -22,10 +22,10 @@ async function Pricing() {
       <div className="w-[1200px] flex justify-center mt-8 gap-10">
         <div className="flex flex-col w-full lg:w-auto py-2 lg:py-1 ">
           <div className="flex flex-col md:items-center">
-            <div className="text-[#1B4A8E] text-[3rem] font-bold">
+            <div className="text-[#1B4A8E] dark:text-white text-[3rem] font-bold">
               Price list
             </div>
-            <div className="text-[#1B4A8E] text-[2rem] font-bold">
+            <div className="text-[#1B4A8E] dark:text-white text-[2rem] font-bold">
               {hasMembership
                 ? "You already hold the active membership. Enjoy!"
                 : "Choose the membership that suits you best"}

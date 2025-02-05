@@ -39,7 +39,7 @@ async function layout({
     <main className="flex justify-center">
       <div className="w-[1200px] flex flex-col sm:flex-row justify-center mt-0 sm:mt-8 gap-10">
         <div className="w-full flex flex-col sm:flex-row gap-9">
-          <div className="md:w-[300px] flex flex-col hover:bg-slate-50 py-4 px-8 rounded-md shadow-md">
+          <div className="md:w-[300px] flex flex-col dark:bg-slate-900 hover:bg-slate-50 py-4 px-8 rounded-md shadow-md">
             <div className="mb-4">
               <div className="flex flex-col justify-center items-center gap-8 sm:gap-0">
                 <div>
@@ -75,7 +75,9 @@ async function layout({
               </li>
             </ul>
           </div>
-          <div className="flex flex-col shadow-md p-4 w-full">{children}</div>
+          <div className="flex flex-col shadow-md p-4 w-full dark:bg-slate-900">
+            {children}
+          </div>
         </div>
       </div>
     </main>

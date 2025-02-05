@@ -63,17 +63,23 @@ async function ProductPage({ params, searchParams }) {
               <div className="flex justify-between">
                 <div className="flex flex-col">
                   <div>
-                    <span className="text-gray-600">Brand:</span>{" "}
+                    <span className="text-gray-600 dark:text-white">
+                      Brand:
+                    </span>{" "}
                     <span className="font-bold">{product.brand}</span>
                   </div>
                   <div>
-                    <span className="text-gray-600">Weight:</span>{" "}
+                    <span className="text-gray-600 dark:text-white">
+                      Weight:
+                    </span>{" "}
                     <span className="font-bold">{product.weight} KG</span>
                   </div>
                 </div>
                 <div className="flex flex-col">
                   <div>
-                    <span className="text-gray-600">Availability:</span>{" "}
+                    <span className="text-gray-600 dark:text-white">
+                      Availability:
+                    </span>{" "}
                     <span className="font-bold">
                       {product.availability > 0
                         ? `In Stock (${product.availability})`
@@ -81,13 +87,15 @@ async function ProductPage({ params, searchParams }) {
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-600">Category:</span>{" "}
+                    <span className="text-gray-600 dark:text-white">
+                      Category:
+                    </span>{" "}
                     <span className="font-bold">{product.category}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="text-4xl text-[#1B4A8E]">
+            <div className="text-4xl text-[#1B4A8E] dark:text-white">
               ₾{product.price / 100}
             </div>
             <hr className="my-6"></hr>

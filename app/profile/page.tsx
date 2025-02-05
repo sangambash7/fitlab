@@ -47,10 +47,7 @@ async function Profile() {
           />
         </div>
 
-        <button
-          className="border bg-[#1B4A8E] text-white text-lg px-2 rounded-sm mt-5"
-          // formAction={}
-        >
+        <button className="border bg-[#1B4A8E] text-white text-lg px-2 rounded-sm mt-5">
           Save
         </button>
       </form>

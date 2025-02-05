@@ -18,7 +18,7 @@ function SignIn({ setSignUp }: SignInProps) {
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email:</label>
           <input
-            className="bg-slate-50 border"
+            className="bg-slate-50 border dark:text-black"
             id="email"
             name="email"
             type="email"
@@ -28,7 +28,7 @@ function SignIn({ setSignUp }: SignInProps) {
         <div className="flex flex-col gap-2">
           <label htmlFor="password">Password:</label>
           <input
-            className="bg-slate-50 border"
+            className="bg-slate-50 border dark:text-black"
             id="password"
             name="password"
             type="password"
@@ -36,7 +36,7 @@ function SignIn({ setSignUp }: SignInProps) {
           />
         </div>
         <button
-          className="border bg-[#1B4A8E] text-white text-xl w-full rounded-sm mt-5"
+          className="border bg-[#1B4A8E] dark:bg-slate-900 dark:font-bold text-white text-xl w-full rounded-sm mt-5"
           formAction={login}
         >
           Log in

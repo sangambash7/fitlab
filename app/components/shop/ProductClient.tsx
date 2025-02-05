@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-// import { handleBuyAction } from "@/actions/buyAction";
 import getStripe from "@/utils/get-stripejs";
 
 function ProductClient({
@@ -62,7 +61,7 @@ function ProductClient({
         <Button
           variant="outline"
           size="sm"
-          className="px-2 py-1"
+          className="px-2 py-1 dark:bg-white dark:text-black"
           onClick={handleDecrement}
         >
           -
@@ -71,21 +70,21 @@ function ProductClient({
         <Button
           variant="outline"
           size="sm"
-          className="px-2 py-1"
+          className="px-2 py-1 dark:bg-white dark:text-black"
           onClick={handleIncrement}
         >
           +
         </Button>
       </div>
       <div className="text-xl">
-        <button className="bg-[#1B4A8E] px-10 py-2 rounded-sm text-white hover:bg-white hover:text-[#1B4A8E] hover:border hover:border-[#1B4A8E]">
+        <button className="bg-[#1B4A8E] dark:bg-white dark:text-black dark:hover:bg-slate-900 dark:hover:text-white px-10 py-2 rounded-sm text-white hover:bg-white hover:text-[#1B4A8E] hover:border hover:border-[#1B4A8E]">
           ADD TO CART
         </button>
       </div>
       <div className="text-xl">
         <button
           onClick={() => handleBuy()}
-          className="border border-[#1B4A8E] px-4 py-2 rounded-sm text-[#1B4A8E] hover:bg-[#1B4A8E] hover:text-white"
+          className="border border-[#1B4A8E] px-4 py-2 rounded-sm text-[#1B4A8E] dark:text-white dark:hover:bg-slate-900 hover:bg-[#1B4A8E] hover:text-white"
         >
           BUY NOW
         </button>
