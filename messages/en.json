@@ -1,4 +1,19 @@
 {
+  "Home": {
+    "Personalise1": "Your fitness, your rules.",
+    "Personalise2": "Welcome to FITLAB.",
+    "Personalise_caption": "Get ready for a new experience, a new journey, and a stronger you. At FITLAB, we empower you to train your way, at your pace, with no limits. Your fitness, your rules!",
+    "Why": "WHY TO JOIN FITLAB CLUB?",
+    "Heading1": "More than a gym",
+    "Caption1": "Sauna and steam bath in all clubs",
+    "routeLabel1": "Show Clubs",
+    "Heading2": "Always reasonable prices",
+    "Caption2": "Fitness that fits your budget.",
+    "routeLabel2": "Show Prices",
+    "Heading3": "Don't you want to train alone?",
+    "Caption3": "You can join group trainings.",
+    "routeLabel3": "Show More"
+  },
   "Header": {
     "Home": "Home",
     "Clubs": "Clubs",
