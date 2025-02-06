@@ -1,14 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import Logo from "./Logo";
 import NavItems from "./NavItems";
-import AuthArea from "./AuthArea";
 import Sidebar from "./Sidebar";
+import { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-function Navbar({ children }) {
+function Navbar({ children }: { children: ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
