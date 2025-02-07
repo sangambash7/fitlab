@@ -2,6 +2,7 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { LuSquareParking } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 interface ClubInfoProps {
   club: {
@@ -15,6 +16,8 @@ interface ClubInfoProps {
 }
 
 function ClubInfo({ club }: ClubInfoProps) {
+  const t = useTranslations("Clubs");
+
   return (
     <div className="grid grid-cols-5 gap-2 md:gap-0">
       <div className="col-span-5 md:col-span-2">
@@ -24,7 +27,7 @@ function ClubInfo({ club }: ClubInfoProps) {
             <h3>{club.address}</h3>
           </div>
           <div>
-            <h3>Telephone number +995 322 12 12 12</h3>
+            <h3>{t("tel")} +995 322 12 12 12</h3>
             <h3>contact@fitlab.ge</h3>
           </div>
           <div className="flex gap-4">
@@ -41,7 +44,7 @@ function ClubInfo({ club }: ClubInfoProps) {
             <div className="text-7xl">
               <LuSquareParking />
             </div>
-            <div className="flex items-center">Free parking</div>
+            <div className="flex items-center">{t("parking")}</div>
           </div>
         </div>
       </div>

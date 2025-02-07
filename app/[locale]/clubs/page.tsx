@@ -3,72 +3,72 @@ import { useTranslations } from "next-intl";
 import ClubInfo from "../components/clubs/ClubInfo";
 import { useState } from "react";
 
-const clubs = [
-  {
-    clubName: "Guramishvili",
-    fullClubName: "FitLab Guramishvili",
-    address: "Guramishvili Ave 25, Tbilisi",
-    coord: {
-      lat: 41.7706,
-      lng: 44.79319,
-    },
-    time1: "Mon-Thu 6.30-22.00",
-    time2: "Fri 6.30-21.00",
-    time3: "Sat, Sun 9.00-21.00",
-  },
-  {
-    clubName: "Saburtalo",
-    fullClubName: "FitLab Saburtalo",
-    address: "Vazha Pshavela Ave 70, Tbilisi",
-    coord: {
-      lat: 41.72427,
-      lng: 44.73741,
-    },
-    time1: "Mon-Thu 6.30-22.00",
-    time2: "Fri 6.30-21.00",
-    time3: "Sat, Sun 8.30-21.00",
-  },
-  {
-    clubName: "Marjanishvili",
-    fullClubName: "FitLab Marjanishvili",
-    address: "David Aghmashenebeli Ave 86, Tbilisi",
-    coord: {
-      lat: 41.70919,
-      lng: 44.79716,
-    },
-    time1: "Mon-Thu 7.00-23.00",
-    time2: "Fri 6.30-21.00",
-    time3: "Sat, Sun 9.00-21.00",
-  },
-  {
-    clubName: "Kutaisi",
-    fullClubName: "FitLab Kutaisi",
-    address: "Ioseb Grishashvili Street 7, Kutaisi",
-    coord: {
-      lat: 42.26882,
-      lng: 42.7011,
-    },
-    time1: "Mon-Thu 7.30-22.00",
-    time2: "Fri 7.30-21.00",
-    time3: "Sat, Sun 9.00-21.00",
-  },
-  {
-    clubName: "Batumi",
-    fullClubName: "FitLab Batumi",
-    address: "Pirosmani Street 21, Batumi",
-    coord: {
-      lat: 41.6387,
-      lng: 41.61582,
-    },
-    time1: "Mon-Thu 6.30-21.30",
-    time2: "Fri 7.30-21.00",
-    time3: "Sat, Sun 8.00-21.00",
-  },
-];
-
 function Clubs() {
   const t = useTranslations("Clubs");
   const [club, setClub] = useState("");
+
+  const clubs = [
+    {
+      clubName: "Guramishvili",
+      fullClubName: "FitLab Guramishvili",
+      address: t("addr1"),
+      coord: {
+        lat: 41.7706,
+        lng: 44.79319,
+      },
+      time1: `${t("Mon")}-${t("Thu")} 6.30-22.00`,
+      time2: `${t("Fri")} 6.30-21.00`,
+      time3: `${t("Sat")}, ${t("Sun")} 9.00-21.00`,
+    },
+    {
+      clubName: "Saburtalo",
+      fullClubName: "FitLab Saburtalo",
+      address: t("addr2"),
+      coord: {
+        lat: 41.72427,
+        lng: 44.73741,
+      },
+      time1: `${t("Mon")}-${t("Thu")} 6.30-22.00`,
+      time2: `${t("Fri")} 6.30-21.00`,
+      time3: `${t("Sat")}, ${t("Sun")} 8.30-21.00`,
+    },
+    {
+      clubName: "Marjanishvili",
+      fullClubName: "FitLab Marjanishvili",
+      address: t("addr3"),
+      coord: {
+        lat: 41.70919,
+        lng: 44.79716,
+      },
+      time1: `${t("Mon")}-${t("Thu")} 7.00-23.00`,
+      time2: `${t("Fri")} 6.30-21.00`,
+      time3: `${t("Sat")}, ${t("Sun")} 9.00-21.00`,
+    },
+    {
+      clubName: "Kutaisi",
+      fullClubName: "FitLab Kutaisi",
+      address: t("addr4"),
+      coord: {
+        lat: 42.26882,
+        lng: 42.7011,
+      },
+      time1: `${t("Mon")}-${t("Thu")} 7.30-22.00`,
+      time2: `${t("Fri")} 7.30-21.00`,
+      time3: `${t("Sat")}, ${t("Sun")} 9.00-21.00`,
+    },
+    {
+      clubName: "Batumi",
+      fullClubName: "FitLab Batumi",
+      address: t("addr5"),
+      coord: {
+        lat: 41.6387,
+        lng: 41.61582,
+      },
+      time1: `${t("Mon")}-${t("Thu")} 6.30-21.30`,
+      time2: `${t("Fri")} 7.30-21.00`,
+      time3: `${t("Sat")}, ${t("Sun")} 8.00-21.00`,
+    },
+  ];
 
   return (
     <main className="flex justify-center dark:bg-black">
