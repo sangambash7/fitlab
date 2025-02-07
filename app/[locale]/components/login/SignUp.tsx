@@ -2,6 +2,7 @@ import { signup } from "../../login/actions";
 import { z } from "zod";
 
 const UserSchema = z.object({
+  fullname: z.string().min(1, { message: "Full Name Is Required" }),
   email: z.string().email({ message: "Invalid email address" }),
   password: z.string().min(8, { message: "Must be 8 or more characters long" }),
   retype_password: z
@@ -14,6 +15,9 @@ interface SignUpProps {
 }
 
 function SignUp({ setSignUp }: SignUpProps) {
+  UserSchema.parse({ username: "Ludwig" });
+  console.log("zod: ", UserSchema.parse({ username: "Ludwig" }));
+
   return (
     <>
       <h2 className="text-4xl font-bold">Sign up</h2>

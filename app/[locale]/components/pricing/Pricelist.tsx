@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import getStripe from "@/utils/get-stripejs";
 import LoadingSpinner from "../LoadingSpinner";
 
 function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
+  const t = useTranslations("Pricing");
   const [interval, setInterval] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -87,7 +89,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                   : "text-[#1B4A8E] dark:text-white"
               }`}
             >
-              Monthly
+              {t("monthly")}
             </h2>
             <div>
               <h2
@@ -97,7 +99,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                ₾99 /month
+                ₾99 /{t("month")}
               </h2>
               <h3
                 className={`font-bold text-sm ${
@@ -105,9 +107,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     ? "text-white"
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
-              >
-                billed monthly
-              </h3>
+              ></h3>
             </div>
 
             <div
@@ -118,7 +118,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
               }`}
             >
               <button onClick={() => handleSubscription("month")}>
-                Buy 1 month
+                {t("buy1")}
               </button>
             </div>
             <div
@@ -138,7 +138,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Billed once in a month
+                {t("billedonce1")}
               </div>
               <div>
                 <span
@@ -150,7 +150,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all FitLab clubs
+                {t("Unlimited")}
               </div>
               <div>
                 <span
@@ -162,7 +162,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all group activities
+                {t("activities")}
               </div>
               <div>
                 <span
@@ -174,7 +174,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Fitness areas with high-quality equipment
+                {t("equipment")}
               </div>
               <div>
                 <span
@@ -186,7 +186,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Changing rooms, Showers, Wifi
+                {t("Changing")}
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                   : "text-[#1B4A8E] dark:text-white"
               }`}
             >
-              Quarterly
+              {t("quarterly")}
             </h2>
             <div>
               <h2
@@ -220,7 +220,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                ₾99 /month
+                ₾99 /{t("month")}
               </h2>
               <h3
                 className={`font-bold text-sm ${
@@ -229,7 +229,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                billed every 3 months
+                {t("billed3")}
               </h3>
             </div>
 
@@ -241,7 +241,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
               }`}
             >
               <button onClick={() => handleSubscription("month")}>
-                Buy 3 months
+                {t("buy3")}
               </button>
             </div>
             <div
@@ -261,7 +261,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Billed once in a quarter
+                {t("billedonce3")}
               </div>
               <div>
                 <span
@@ -273,7 +273,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all FitLab clubs
+                {t("Unlimited")}
               </div>
               <div>
                 <span
@@ -285,7 +285,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all group activities
+                {t("activities")}
               </div>
               <div>
                 <span
@@ -297,7 +297,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Fitness areas with high-quality equipment
+                {t("equipment")}
               </div>
               <div>
                 <span
@@ -309,8 +309,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Includes 8 personal training sessions from our proffesional
-                staff
+                {t("includes2")}
               </div>
               <div>
                 <span
@@ -322,7 +321,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Changing rooms, Showers, Wifi
+                {t("Changing")}
               </div>
             </div>
           </div>
@@ -346,7 +345,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                   : "text-[#1B4A8E] dark:text-white"
               }`}
             >
-              Quarterly
+              {t("yaerly")}
             </h2>
             <div>
               <h2
@@ -356,7 +355,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                ₾99 /month
+                ₾99 /{t("month")}
               </h2>
               <h3
                 className={`font-bold text-sm ${
@@ -365,7 +364,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                billed anually
+                {t("billed12")}
               </h3>
             </div>
 
@@ -377,7 +376,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
               }`}
             >
               <button onClick={() => handleSubscription("month")}>
-                Buy 1 year
+                {t("buy12")}
               </button>
             </div>
             <div
@@ -397,7 +396,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Billed once in a year
+                {t("billed12")}
               </div>
               <div>
                 <span
@@ -409,7 +408,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all FitLab clubs
+                {t("Unlimited")}
               </div>
               <div>
                 <span
@@ -421,7 +420,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Unlimited access to all group activities
+                {t("billed12")}
               </div>
               <div>
                 <span
@@ -433,7 +432,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Fitness areas with high-quality equipment
+                {t("equipment")}
               </div>
               <div>
                 <span
@@ -445,7 +444,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Changing rooms, Showers, Wifi
+                {t("Changing")}
               </div>
               <div>
                 <span
@@ -457,8 +456,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                 >
                   ✔
                 </span>{" "}
-                Includes 20 personal training sessions from our proffesional
-                staff
+                {t("includes3")}
               </div>
             </div>
           </div>

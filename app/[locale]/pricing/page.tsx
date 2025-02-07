@@ -1,8 +1,10 @@
+import { getTranslations } from "next-intl/server";
 import { createClient } from "@/utils/supabase/server";
 import { getSubscription } from "@/actions/stripeActions";
 import Pricelist from "../components/pricing/Pricelist";
 
 async function Pricing() {
+  const t = await getTranslations("Pricing");
   const supabase = await createClient();
 
   const { data: profile, error } = await supabase
@@ -23,12 +25,10 @@ async function Pricing() {
         <div className="flex flex-col w-full lg:w-auto py-2 lg:py-1 ">
           <div className="flex flex-col md:items-center">
             <div className="text-[#1B4A8E] dark:text-white text-[3rem] font-bold">
-              Price list
+              {t("heading")}
             </div>
             <div className="text-[#1B4A8E] dark:text-white text-[2rem] font-bold">
-              {hasMembership
-                ? "You already hold the active membership. Enjoy!"
-                : "Choose the membership that suits you best"}
+              {hasMembership ? `${t("caption")}` : `${t("caption")}`}
             </div>
           </div>
           <Pricelist hasMembership={hasMembership} />
