@@ -52,8 +52,11 @@ async function AuthArea() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={"/profile/orders"} className="text-[1rem] w-full">
-                  {t("Orders")}
+                <Link
+                  href={"/profile/fitlabPass"}
+                  className="text-[1rem] w-full"
+                >
+                  Fitlab Pass
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
