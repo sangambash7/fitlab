@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
-import Header from "./[locale]/components/header/Header";
-import Footer from "./[locale]/components/footer/Footer";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const rubik = Rubik({

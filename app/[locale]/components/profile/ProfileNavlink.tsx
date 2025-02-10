@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function ProfileNavlink({ dest, label }) {
+function ProfileNavlink({ dest, label }: { dest: string; label: string }) {
   const pathname = usePathname();
 
   return (

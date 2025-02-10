@@ -50,7 +50,7 @@ function ClubInfo({ club }: ClubInfoProps) {
       </div>
       <div className="col-span-5 md:col-span-3">
         <LoadScript
-          googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+          googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
         >
           <GoogleMap
             mapContainerStyle={{

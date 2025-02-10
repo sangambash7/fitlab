@@ -7,7 +7,7 @@ async function Pricing() {
   const t = await getTranslations("Pricing");
   const supabase = await createClient();
 
-  const { data: profile, error } = await supabase
+  const { data: profile } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
   const stripeSubscriptionID = profile && profile[0]?.stripe_subscriptionID;

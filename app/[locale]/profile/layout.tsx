@@ -28,12 +28,12 @@ async function layout({
     console.log("Error retrieving subscriptionID from database: ", error);
   }
 
-  const subscription =
-    profile?.length > 0
-      ? await getSubscription(profile[0].stripe_subscriptionID)
-      : null;
+  const profileData = profile ?? [];
 
-  const priceID = subscription?.items?.data[0].price.id;
+  const subscription =
+    profileData.length > 0
+      ? await getSubscription(profileData[0].stripe_subscriptionID)
+      : null;
 
   return (
     <main className="flex justify-center">

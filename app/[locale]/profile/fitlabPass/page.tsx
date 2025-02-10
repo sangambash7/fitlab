@@ -7,7 +7,7 @@ import CancelSubscription from "../../components/profile/CancelSubscription";
 async function FitlabPass() {
   const supabase = await createClient();
 
-  const { data: profile, error } = await supabase
+  const { data: profile } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
   const stripeSubscriptionID = profile && profile[0]?.stripe_subscriptionID;
@@ -19,9 +19,9 @@ async function FitlabPass() {
 
   const subscriptionItems = subscription?.items?.data[0];
 
-  const subEndTime = new Date(
-    subscription?.current_period_end * 1000
-  ).toLocaleString();
+  const subEndTime = subscription?.current_period_end
+    ? new Date(subscription?.current_period_end * 1000).toLocaleString()
+    : "N/A";
 
   return (
     <div className="w-full lg:w-[500px]">
@@ -51,7 +51,9 @@ async function FitlabPass() {
           <div className="flex w-full justify-between my-4">
             <h1 className="font-semibold">Price</h1>
             <div>
-              {subscriptionItems?.plan.amount / 100}{" "}
+              {subscriptionItems?.plan.amount
+                ? subscriptionItems.plan.amount / 100
+                : "N/A"}{" "}
               {subscriptionItems?.plan.currency.toUpperCase()}
             </div>
           </div>

@@ -66,7 +66,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
   return (
     <>
       <div
-        className={`bg-[#F1F1F1] dark:bg-slate-900 mt-4 pt-2 lg:pt-0 flex flex-col lg:flex-row items-center ${
+        className={`bg-[#F1F1F1] lg:bg-white dark:bg-slate-900 mt-4 pt-2 lg:pt-0 flex flex-col lg:flex-row items-center ${
           isLoading && "pointer-events-none opacity-60"
         } ${hasMembership && "pointer-events-none opacity-60"} `}
       >

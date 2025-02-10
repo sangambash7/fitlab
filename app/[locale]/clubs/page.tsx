@@ -117,7 +117,11 @@ function Clubs() {
             </div>
           </div>
 
-          {club && <ClubInfo club={clubs.find((c) => club === c.clubName)} />}
+          {club && (
+            <ClubInfo
+              club={clubs.find((c) => club === c.clubName) || clubs[0]}
+            />
+          )}
         </div>
       </div>
     </main>

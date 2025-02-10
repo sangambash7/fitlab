@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { signOut } from "@/actions/authActions";
 import Logout from "../Logout";
 import { createClient } from "@/utils/supabase/server";
 import { getTranslations } from "next-intl/server";
@@ -9,7 +8,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";

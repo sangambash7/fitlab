@@ -16,7 +16,7 @@ export async function createCustomerStripe(fullname: string, email: string) {
   if (customer) return customer;
 }
 
-export async function createSubscription(customerID, priceID) {
+export async function createSubscription(customerID: string, priceID: string) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2025-01-27.acacia",
   });
@@ -77,6 +77,12 @@ export async function cancelSubscriptionByID() {
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("stripe_subscriptionID");
+
+  if (error) {
+    console.error("Error fetching profile:", error);
+    throw new Error("Failed to fetch profile.");
+  }
+
   const stripeSubscriptionID = profile[0]?.stripe_subscriptionID;
 
   try {
