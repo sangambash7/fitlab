@@ -57,13 +57,13 @@ function Profile() {
     <div className="flex flex-col items-center sm:items-start">
       <h1 className="text-3xl">Personal Information</h1>
       <form
-        className="pt-4 w-[80%] md:w-[60%] lg:w-[50%]"
+        className="pt-4 w-[80%] md:w-[60%] lg:w-[50%] "
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ">
           <label htmlFor="fullname">Full Name:</label>
           <input
-            className={`border p-2 rounded-md ${
+            className={`border p-2 rounded-md dark:text-black ${
               isEditing ? "bg-white" : "bg-gray-200 cursor-not-allowed"
             }`}
             id="fullname"
@@ -78,7 +78,7 @@ function Profile() {
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email:</label>
           <input
-            className={`border p-2 rounded-md ${
+            className={`border p-2 rounded-md dark:text-black ${
               isEditing ? "bg-white" : "bg-gray-200 cursor-not-allowed"
             }`}
             id="email"
