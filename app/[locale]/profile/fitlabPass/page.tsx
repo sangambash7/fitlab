@@ -13,7 +13,7 @@ async function FitlabPass() {
   const stripeSubscriptionID = profile && profile[0]?.stripe_subscriptionID;
 
   const subscription =
-    profile && profile?.length > 0
+    profile && profile?.length > 0 && profile[0].stripe_subscriptionID
       ? await getSubscription(stripeSubscriptionID)
       : null;
 

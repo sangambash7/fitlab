@@ -33,6 +33,7 @@ export async function signup(formData: FormData) {
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
+    personalID: formData.get("personal_id") as string,
     options: {
       data: {
         full_name: formData.get("fullname") as string,
@@ -40,21 +41,16 @@ export async function signup(formData: FormData) {
     },
   };
 
-  const { error } = await supabase.auth.signUp(data);
+  const { data: userData, error } = await supabase.auth.signUp(data);
 
-  if (error) {
+  if (error || !userData.user) {
     redirect("/error");
   }
+
+  const { data: profileData, error: profileError } = await supabase
+    .from("profiles")
+    .insert([{ user_id: userData.user.id, personal_id: data.personalID }]);
 
   revalidatePath("/", "layout");
   redirect("/");
 }
-
-// export async function handleSignInWithGoogle(response) {
-//   const supabase = await createClient();
-
-//   const { data, error } = await supabase.auth.signInWithIdToken({
-//     provider: "google",
-//     token: response.credential,
-//   });
-// }

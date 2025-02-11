@@ -33,8 +33,6 @@ export async function createSubscription(customerID: string, priceID: string) {
       payment_settings: { save_default_payment_method: "on_subscription" },
       expand: ["latest_invoice.payment_intent"],
     });
-
-    console.log("subscription from stripe ections: ", subscription);
   } catch (error) {
     console.error(error);
   }

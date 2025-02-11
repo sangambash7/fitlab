@@ -31,7 +31,7 @@ async function layout({
   const profileData = profile ?? [];
 
   const subscription =
-    profileData.length > 0
+    profileData.length > 0 && profileData[0].stripe_subscriptionID
       ? await getSubscription(profileData[0].stripe_subscriptionID)
       : null;
 

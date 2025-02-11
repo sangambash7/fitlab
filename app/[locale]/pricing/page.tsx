@@ -13,7 +13,7 @@ async function Pricing() {
   const stripeSubscriptionID = profile && profile[0]?.stripe_subscriptionID;
 
   const subscription =
-    profile && profile?.length > 0
+    profile && profile?.length > 0 && stripeSubscriptionID
       ? await getSubscription(stripeSubscriptionID)
       : null;
 
@@ -28,7 +28,7 @@ async function Pricing() {
               {t("heading")}
             </div>
             <div className="text-[#1B4A8E] dark:text-white text-[2rem] font-bold">
-              {hasMembership ? `${t("caption")}` : `${t("caption")}`}
+              {hasMembership ? `${t("already")}` : `${t("caption")}`}
             </div>
           </div>
           <Pricelist hasMembership={hasMembership} />
