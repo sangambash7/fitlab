@@ -46,7 +46,7 @@ async function layout({
                   <div className="text-xl">{user.user_metadata.full_name}</div>
                   <div className="text-sm">{user.user_metadata.email}</div>
                 </div>
-                {subscription?.status === "active" ? (
+                {subscription?.plan?.active ? (
                   <div className="flex flex-col items-center my-2">
                     <Image
                       src="/QR_Code.png"
