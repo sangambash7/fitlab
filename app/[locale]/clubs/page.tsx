@@ -84,7 +84,7 @@ function Clubs() {
               <p className="w-100 md:w-[60%] text-[20px]">{t("description")}</p>
             </div>
           </div>
-          <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-5 my-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 my-8">
             <div
               onClick={() => setClub("Guramishvili")}
               className="bg-[#fafafa] dark:bg-black dark:border dark:border-white dark:text-white text-[#1B4A8E] font-bold text-lg cursor-pointer hover:bg-[#1B4A8E] hover:text-white flex justify-center text-center p-[2rem]"

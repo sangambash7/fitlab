@@ -90,7 +90,11 @@ export async function cancelSubscriptionByID() {
       stripeSubscriptionID
     );
 
-    return subscription;
+    if (subscription && subscription.id) {
+      window.location.reload();
+    }
+
+    return subscription.id;
   } catch (error) {
     console.error(error);
   }

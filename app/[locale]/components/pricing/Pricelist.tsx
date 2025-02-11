@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import getStripe from "@/utils/get-stripejs";
 import LoadingSpinner from "../LoadingSpinner";
@@ -10,13 +11,18 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
   const t = useTranslations("Pricing");
   const [interval, setInterval] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   async function handleSubscription(time: "month" | "year" | "quarter") {
     setIsLoading(true);
-    console.log("first run after loading set to true");
+
     const supabase = await createClient();
-    const { data } = await supabase.auth.getUser();
-    console.log("data from supabase user", data);
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) {
+      router.push("/login");
+      return;
+    }
 
     const priceObject = {
       month: "price_1QnoSKI0TWu0X0NTWMp1ROWP",
@@ -26,7 +32,6 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
 
     const priceID = priceObject[time];
     const customerID = data?.user?.user_metadata?.stripeCustomerID;
-    console.log(priceID, customerID);
 
     const response = await fetch("/api/stripe/create-subscription", {
       method: "POST",
@@ -37,11 +42,8 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
       }),
     });
 
-    console.log("response", response);
-
     const { sessionId } = await response.json();
     const stripe = await getStripe();
-    console.log("sessionId", sessionId);
 
     if (!stripe) {
       console.error("Stripe.js didn't load correctly.");
@@ -66,9 +68,9 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
   return (
     <>
       <div
-        className={`bg-[#F1F1F1] lg:bg-white dark:bg-slate-900 mt-4 pt-2 lg:pt-0 flex flex-col lg:flex-row items-center ${
+        className={`bg-[#F1F1F1] lg:bg-white dark:bg-slate-900 xl:dark:bg-[#0A0A0A] mt-4 pt-2 lg:pt-0 flex flex-col lg:flex-row items-center ${
           isLoading && "pointer-events-none opacity-60"
-        } ${hasMembership && "pointer-events-none opacity-60"} `}
+        } ${hasMembership && "pointer-events-none opacity-60"}`}
       >
         {/* MONTHLY */}
         <div
@@ -107,7 +109,9 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     ? "text-white"
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
-              ></h3>
+              >
+                {t("billed1")}
+              </h3>
             </div>
 
             <div

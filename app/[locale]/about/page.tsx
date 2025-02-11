@@ -14,8 +14,11 @@ function page() {
     <main className="flex justify-center">
       <div className="w-full p-2 xl:p-0 xl:w-[1200px] flex flex-col mt-8 gap-10">
         <div className="w-full grid grid-cols-5 gap-10 items-center ">
-          <div className="col-span-5 text-xl">
-            <h1 className="mb-6">Welcome To FitLab</h1>
+          <div className="col-span-5 text-xl ">
+            {/* <h1 className="mb-6">Welcome To FitLab</h1> */}
+            <div className="flex items-center justify-center">
+              <h1 className="text-4xl mb-4">Welcome To FitLab</h1>
+            </div>
             <div className="flex text-justify">
               At FitLab, we’re more than just a gym. We are a community of
               fitness enthusiasts, dedicated to helping you achieve your health

@@ -19,7 +19,7 @@ function ClubInfo({ club }: ClubInfoProps) {
   const t = useTranslations("Clubs");
 
   return (
-    <div className="grid grid-cols-5 gap-2 md:gap-0">
+    <div className="grid grid-cols-5 gap-2 md:gap-0 mb-8">
       <div className="col-span-5 md:col-span-2">
         <div className="flex flex-col gap-4 bg-black opacity-90 text-white text-[17px] h-full p-6">
           <div>
