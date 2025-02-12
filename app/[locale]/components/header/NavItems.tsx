@@ -20,12 +20,12 @@ function NavItems() {
           <Link href={"/pricing"}>{t("Pricing")}</Link>
         </button>
       </li>
-      {/* <li>
+      <li>
         <button className="hover:text-[#DDD]">
           {" "}
           <Link href={"/shop"}>{t("Shop")}</Link>
         </button>
-      </li> */}
+      </li>
       <li>
         <button className="hover:text-[#DDD]">
           <Link href={"/about"}>{t("About Us")}</Link>
