@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
   ) {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.getUser();
-    console.log(error);
+
     if (data.user) {
       const loginUrl = new URL("/", request.url);
       return NextResponse.redirect(loginUrl);

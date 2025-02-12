@@ -15,7 +15,6 @@ function page() {
       <div className="w-full p-2 xl:p-0 xl:w-[1200px] flex flex-col mt-8 gap-10">
         <div className="w-full grid grid-cols-5 gap-10 items-center ">
           <div className="col-span-5 text-xl ">
-            {/* <h1 className="mb-6">Welcome To FitLab</h1> */}
             <div className="flex items-center justify-center">
               <h1 className="text-4xl mb-4">Welcome To FitLab</h1>
             </div>
@@ -29,6 +28,37 @@ function page() {
               personal training services, group fitness classes, and wellness
               programs. Our friendly and experienced team is here to provide the
               support you need to succeed in your fitness journey.
+            </div>
+            <div className="flex items-center justify-center mt-8">
+              <h1 className="text-4xl mb-4">What We Offer</h1>
+            </div>
+            <div className="flex text-justify">
+              <ul>
+                <li>
+                  ✅ <span className="font-bold">Flexible Membership:</span>{" "}
+                  Subscription-based access to all our clubs.
+                </li>
+                <li>
+                  ✅ <span className="font-bold">Nationwide Access:</span> Train
+                  at <span className="font-bold">any of our 5 clubs</span>{" "}
+                  across the country.
+                </li>
+                <li>
+                  ✅ <span className="font-bold">Unlimited Daily Visits:</span>{" "}
+                  Workout in one club, then head to another for sauna or
+                  swimming.
+                </li>
+                <li>
+                  ✅ <span className="font-bold">Diverse Facilities:</span> Gym,
+                  swimming pools, saunas, group classes, and more.
+                </li>
+                <li>
+                  ✅ <span className="font-bold">Easy Access:</span> Use the{" "}
+                  <span className="font-bold">FitLab Pass</span> QR code
+                  generated after purchasing membership to easily enter the gym,
+                  available on your profile page.
+                </li>
+              </ul>
             </div>
           </div>
         </div>

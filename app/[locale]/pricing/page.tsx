@@ -28,10 +28,13 @@ async function Pricing() {
               {t("heading")}
             </div>
             <div className="text-[#1B4A8E] dark:text-white text-[2rem] font-bold">
-              {hasMembership ? `${t("already")}` : `${t("caption")}`}
+              {!hasMembership && `${t("caption")}`}
             </div>
           </div>
           <Pricelist hasMembership={hasMembership} />
+          <div className="text-[#1B4A8E] dark:text-white text-sm italic font-bold mt-4">
+            {hasMembership && `• ${t("already")}`}
+          </div>
         </div>
       </div>
     </main>

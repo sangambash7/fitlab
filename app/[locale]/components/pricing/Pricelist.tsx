@@ -224,7 +224,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                ₾99 /{t("month")}
+                ₾83.33 /{t("month")}
               </h2>
               <h3
                 className={`font-bold text-sm ${
@@ -244,7 +244,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                   : "bg-[#1B4A8E] dark:bg-black dark:border dark:border-white dark:font-bold dark:hover:bg-slate-900 text-white hover:bg-blue-600 "
               }`}
             >
-              <button onClick={() => handleSubscription("month")}>
+              <button onClick={() => handleSubscription("quarter")}>
                 {t("buy3")}
               </button>
             </div>
@@ -359,7 +359,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                     : "text-[#1B4A8E] dark:text-white"
                 }`}
               >
-                ₾99 /{t("month")}
+                ₾66.67 /{t("month")}
               </h2>
               <h3
                 className={`font-bold text-sm ${
@@ -379,7 +379,7 @@ function Pricelist({ hasMembership }: { hasMembership: boolean | undefined }) {
                   : "bg-[#1B4A8E] dark:bg-black dark:border dark:border-white dark:font-bold dark:hover:bg-slate-900 text-white hover:bg-blue-600 "
               }`}
             >
-              <button onClick={() => handleSubscription("month")}>
+              <button onClick={() => handleSubscription("year")}>
                 {t("buy12")}
               </button>
             </div>

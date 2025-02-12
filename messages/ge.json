@@ -77,5 +77,25 @@
     "billed2": "გადახდა კვარტალურად",
     "includes2": "პაკეტში შედის 8 უფასო სავარჯიშო სესია ჩვენი პროფესიონალი ტრენერებისაგან",
     "includes3": "პაკეტში შედის 20 უფასო სავარჯიშო სესია ჩვენი პროფესიონალი ტრენერებისაგან"
+  },
+  "About": {
+    "heading": "Price list",
+    "partners": "Partners",
+    "nikeweb:": "Nike Georgia Website",
+    "marathonweb:": "Tbilisi Marathon Website",
+    "tbcweb": "TBC Academy Website"
+  },
+  "Login": {
+    "Sign in": "სისტემაში შესვლა",
+    "Don't have an Account?": "არ გაქვთ ანგარიში?",
+    "Sign up": "რეგისტრაცია",
+    "Email": "ელ. ფოსტა",
+    "Password": "პაროლი",
+    "Confirm password": "გაიმეორეთ პაროლი",
+    "Already have an Account?": "უკვე გაქვთ ანგარიში?",
+    "Full name": "სრული სახელი",
+    "Personal ID": "პირადი ნომერი",
+    "This email is already registered": "ეს ელექტრონული ფოსტა უკვე დარეგისტრირებულია სისტემაში",
+    "Your username or password is incorrect": "თქვენი მომხმარებელი ან პაროლი არასწორია"
   }
 }
