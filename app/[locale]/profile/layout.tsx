@@ -30,9 +30,10 @@ async function layout({
 
   const profileData = profile ?? [];
 
-  const subscription =
+  const isActive =
     profileData.length > 0 && profileData[0].stripe_subscriptionID
-      ? await getSubscription(profileData[0].stripe_subscriptionID)
+      ? (await getSubscription(profileData[0].stripe_subscriptionID))?.items
+          ?.data[0]?.plan?.active
       : null;
 
   return (
@@ -46,7 +47,7 @@ async function layout({
                   <div className="text-xl">{user.user_metadata.full_name}</div>
                   <div className="text-sm">{user.user_metadata.email}</div>
                 </div>
-                {subscription?.plan?.active ? (
+                {isActive ? (
                   <div className="flex flex-col items-center my-2">
                     <Image
                       src="/QR_Code.png"
