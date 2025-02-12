@@ -13,17 +13,23 @@ export default function Home() {
           className="h-[50vh] w-full object-cover"
         />
       </div>
-      <div className="flex justify-center mt-6">
-        <div className="w-[1100px]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="text-[45px]">
-              {t("Personalise1")}{" "}
-              <span className="text-[#1B4A8E] dark:text-white">
-                {t("Personalise2")}
-              </span>
+      <div className="flex flex-col items-center justify-center">
+        <div className="w-full bg-[#E4BF6E] text-[1B4A8E]">
+          <div className="flex flex-col items-center gap-4 py-6">
+            <div className="lg:w-[1100px] ">
+              <div className="text-[45px] text-center">
+                {t("Personalise1")}{" "}
+                <span className="text-[#1B4A8E] dark:text-white">
+                  {t("Personalise2")}
+                </span>
+              </div>
+              <div className="text-[25px] text-center">
+                {t("Personalise_caption")}
+              </div>
             </div>
-            <div className="text-[25px]">{t("Personalise_caption")}</div>
           </div>
+        </div>
+        <div className="lg:w-[1100px]">
           <div className="flex flex-col items-center gap-4 mt-6">
             <div className="text-[45px]">
               <span className="text-[#1B4A8E] dark:text-white">{t("Why")}</span>
