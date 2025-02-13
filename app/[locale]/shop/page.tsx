@@ -10,7 +10,6 @@ import {
 import { createClient } from "@/utils/supabase/server";
 import ProductCard from "../components/shop/ProductCard";
 import { CiSearch } from "react-icons/ci";
-import Image from "next/image";
 
 async function Shop() {
   const supabase = await createClient();

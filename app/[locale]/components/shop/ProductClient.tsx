@@ -22,6 +22,7 @@ function ProductClient({
   };
 
   async function handleBuy() {
+    console.log("handlebuy run");
     const response = await fetch("/api/stripe/create-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

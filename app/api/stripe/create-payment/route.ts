@@ -12,6 +12,11 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
+      phone_number_collection: { enabled: true },
+      shipping_address_collection: {
+        allowed_countries: ["GE"],
+      },
+
       //   customer: customerID,
       //   subscription_data: {
       //     metadata: { customerID },

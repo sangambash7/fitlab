@@ -67,7 +67,7 @@ async function layout({
             </div>
             <ul className="flex flex-col items-center sm:items-start">
               <ProfileNavlink dest="/profile" label="My Dashboard" />
-              {/* <ProfileNavlink dest="/profile/orders" label="Order History" /> */}
+              <ProfileNavlink dest="/profile/orders" label="Order History" />
               <ProfileNavlink dest="/profile/fitlabPass" label="FitLab Pass" />
               <li className="transition-padding-all duration-300 hover:ps-4 hover:underline">
                 <div>

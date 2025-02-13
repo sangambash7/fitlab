@@ -10,18 +10,23 @@ async function ProductPage({ params, searchParams }) {
   const { productID } = await params;
   const { session_id } = await searchParams;
 
-  const { data: user } = await supabase.auth.getUser();
-  console.log(user);
-
   // Check succesfull payment
   if (session_id) {
     const session = await getBySessionID(session_id);
     console.log("session", session, session?.payment_status);
 
-    if (session?.payment_status) {
+    if (session?.payment_status === "paid") {
       const { data, error } = await supabase
         .from("orders")
-        .insert([{ price_total: session.amount_total, product_id: productID }])
+        .insert([
+          {
+            price_total: session.amount_total,
+            product_id: productID,
+            session_id: session.id,
+            delivery_address: session.customer_details?.address,
+            contact_number: session.customer_details?.phone,
+          },
+        ])
         .select("*");
 
       console.log("data, error", data, error);
@@ -39,8 +44,6 @@ async function ProductPage({ params, searchParams }) {
   }
 
   const product = data[0];
-
-  console.log(product);
 
   return (
     <main className="flex justify-center">
@@ -78,10 +81,14 @@ async function ProductPage({ params, searchParams }) {
                     <span className="text-gray-600 dark:text-white">
                       Availability:
                     </span>{" "}
-                    <span className="font-bold">
-                      {product.availability > 0
-                        ? `In Stock (${product.availability})`
-                        : "Not Available"}
+                    <span
+                      className={`font-bold ${
+                        product.availability > 0
+                          ? "text-green-700"
+                          : "text-red-700"
+                      }`}
+                    >
+                      {product.availability > 0 ? `In Stock` : "Not Available"}
                     </span>
                   </div>
                   <div>
