@@ -30,20 +30,32 @@ async function Orders() {
             <TableHead className="w-[100px]">Product ID</TableHead>
             <TableHead className="text-center">Order created</TableHead>
             <TableHead className="text-right">Total price </TableHead>
+            <TableHead className="text-right">
+              Delivery contact number
+            </TableHead>
+            <TableHead className="text-right">Delivery address</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {orders &&
-            orders.map((order) => (
-              <TableRow key={order.product_id}>
+            orders.map((order, index) => (
+              <TableRow key={index}>
                 <TableCell className="font-medium">
                   {order.product_id}
                 </TableCell>
                 <TableCell className="text-center">
-                  {order.created_at.toLocaleString()}
+                  {new Date(order.created_at).toLocaleString()}
                 </TableCell>
                 <TableCell className="text-right">
-                  ₾{order.price_total}
+                  ₾{order.price_total / 100}
+                </TableCell>
+                <TableCell className="text-right">
+                  {order.contact_number}
+                </TableCell>
+                <TableCell className="text-right">
+                  {order.delivery_address.line1} {order.delivery_address.line2}{" "}
+                  {order.delivery_address.city}{" "}
+                  {order.delivery_address.postal_code}
                 </TableCell>
               </TableRow>
             ))}
