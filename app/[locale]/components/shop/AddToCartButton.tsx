@@ -12,31 +12,23 @@ function AddToCartButton({
   async function handleAddToCart() {
     const supabase = await createClient();
 
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
+    //update a cart item if product already exists
+    const { data } = await supabase.from("cart").select("product_id, quantity");
 
-    if (authError || !user) {
-      console.error("Cant retrieve user:", authError);
-      return null;
-    }
+    const currentProduct = data?.find(
+      (product) => product.product_id === productID
+    );
 
-    const { data, error: errorCart } = await supabase
-      .from("cart")
-      .select("products");
-    const cartData = data && data[0].products;
-
-    console.log("data from cart", cartData);
-    cartData?.push({ product_id: productID, quantity: quantity });
-
-    const { error } = await supabase
-      .from("cart")
-      .update([{ products: cartData }])
-      .eq("user_id", user.id);
-
-    if (error) {
-      console.log(error);
+    if (currentProduct) {
+      await supabase
+        .from("cart")
+        .update([{ quantity: currentProduct.quantity + quantity }])
+        .eq("product_id", productID);
+    } else {
+      // create a new cart items if the product doesn't exist
+      await supabase
+        .from("cart")
+        .insert([{ product_id: productID, quantity: quantity }]);
     }
   }
 
