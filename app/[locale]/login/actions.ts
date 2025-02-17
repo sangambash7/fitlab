@@ -51,6 +51,8 @@ export async function signup(formData: FormData) {
     .from("profiles")
     .insert([{ user_id: userData.user.id, personal_id: data.personalID }]);
 
+  await supabase.from("cart").insert([{}]);
+
   revalidatePath("/", "layout");
   redirect("/");
 }

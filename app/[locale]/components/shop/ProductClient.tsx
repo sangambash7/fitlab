@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import getStripe from "@/utils/get-stripejs";
+import AddToCartButton from "./AddToCartButton";
 
 function ProductClient({
   productID,
@@ -78,9 +79,7 @@ function ProductClient({
         </Button>
       </div>
       <div className="text-xl">
-        <button className="bg-[#1B4A8E] dark:bg-white dark:text-black dark:hover:bg-slate-900 dark:hover:text-white px-10 py-2 rounded-sm text-white hover:bg-white hover:text-[#1B4A8E] hover:border hover:border-[#1B4A8E]">
-          ADD TO CART
-        </button>
+        <AddToCartButton quantity={quantity} productID={productID} />
       </div>
       <div className="text-xl">
         <button
