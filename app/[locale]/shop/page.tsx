@@ -10,6 +10,7 @@ import {
 import { createClient } from "@/utils/supabase/server";
 import ProductCard from "../components/shop/ProductCard";
 import { CiSearch } from "react-icons/ci";
+import ShoppingCartButton from "../components/shop/ShoppingCartButton";
 
 async function Shop() {
   const supabase = await createClient();
@@ -141,6 +142,9 @@ async function Shop() {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+          <div className="flex items-center text-2xl justify-end mt-2">
+            <ShoppingCartButton />
           </div>
           {/* Actual Products */}
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-4">
