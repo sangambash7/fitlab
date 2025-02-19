@@ -2,10 +2,6 @@
 
 import { createClient } from "@/utils/supabase/server";
 
-// export async function getUser() {
-//   const supabase = await createClient();
-// }
-
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
@@ -22,10 +18,6 @@ export async function createSubscriptionSupabase(subscriptionID: string) {
     console.error("Cant retrieve user:", authError);
     return null;
   }
-
-  // const { data, error } = await supabase
-  //   .from("profiles")
-  //   .insert([{ user_id: user.id, stripe_subscriptionID: subscriptionID }]);
 
   const { data, error } = await supabase
     .from("profiles")

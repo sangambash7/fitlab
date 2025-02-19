@@ -5,9 +5,11 @@ import { createClient } from "@/utils/supabase/client";
 function AddToCartButton({
   quantity,
   productID,
+  priceID,
 }: {
   quantity: number;
   productID: number;
+  priceID: string;
 }) {
   async function handleAddToCart() {
     const supabase = await createClient();
@@ -28,7 +30,9 @@ function AddToCartButton({
       // create a new cart items if the product doesn't exist
       await supabase
         .from("cart")
-        .insert([{ product_id: productID, quantity: quantity }]);
+        .insert([
+          { product_id: productID, quantity: quantity, price_id: priceID },
+        ]);
     }
   }
 

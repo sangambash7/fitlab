@@ -23,7 +23,6 @@ function ProductClient({
   };
 
   async function handleBuy() {
-    console.log("handlebuy run");
     const response = await fetch("/api/stripe/create-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -79,7 +78,11 @@ function ProductClient({
         </Button>
       </div>
       <div className="text-xl">
-        <AddToCartButton quantity={quantity} productID={productID} />
+        <AddToCartButton
+          quantity={quantity}
+          productID={productID}
+          priceID={priceID}
+        />
       </div>
       <div className="text-xl">
         <button
