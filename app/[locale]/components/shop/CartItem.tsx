@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner";
 
 function CartItem({ productID, quantity }) {
   const [productData, setProductData] = useState(null);

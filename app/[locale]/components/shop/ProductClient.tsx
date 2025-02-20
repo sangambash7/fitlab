@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import getStripe from "@/utils/get-stripejs";
 import AddToCartButton from "./AddToCartButton";
 
 function ProductClient({

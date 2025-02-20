@@ -12,7 +12,7 @@ async function ShoppingCartButton() {
         <span className="flex items-center ">
           <CiShoppingCart />{" "}
           <span className="text-red-700 align-super text-sm relative -top-1">
-            {data?.length > 0 && data?.length}
+            {data && data.length > 0 && data.length}
           </span>
         </span>
       </Link>

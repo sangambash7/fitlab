@@ -141,10 +141,10 @@ async function Shop() {
                   <SelectItem value="desc">Highest Price First</SelectItem>
                 </SelectContent>
               </Select>
+              <span className="text-2xl">
+                <ShoppingCartButton />
+              </span>
             </div>
-          </div>
-          <div className="flex items-center text-2xl justify-end mt-2">
-            <ShoppingCartButton />
           </div>
           {/* Actual Products */}
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-4">
@@ -158,7 +158,7 @@ async function Shop() {
                     id={product.id}
                     name={product.name}
                     image={product.picture}
-                    price={product.price}
+                    price={product.price / 100}
                   />
                 </div>
               ))}
