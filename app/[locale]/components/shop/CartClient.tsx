@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import CartItem from "../../components/shop/CartItem";
 import BuyFromCartButton from "./BuyFromCartButton";
 import { createClient } from "@/utils/supabase/client";
@@ -10,16 +10,11 @@ function CartClient() {
   const [isLoading, setIsLoading] = useState(false);
   const [cartList, setCartList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(null);
-  const [cartUpdated, setCartUpdated] = useState(false);
-
-  const hasFetched = useRef(false);
+  const [cartUpdated, setCartUpdated] = useState(false); // გადაეცემა შვილებს პროპსებად; იქ განხორციელებული ოპერაციების შემდეგ ახლდება რათა მშობლის და შვილის რეგენრირება გამოიწვიოს
 
   useEffect(() => {
-    // if (hasFetched.current) return;
-    // hasFetched.current = true;
-
     async function getCartData() {
-      setIsLoading(true);
+      // setIsLoading(true);
       const supabase = await createClient();
       const { data: cartData } = await supabase
         .from("cart")
@@ -40,7 +35,7 @@ function CartClient() {
       );
 
       setTotalPrice(productPrices.reduce((acc, price) => acc + price, 0));
-      setIsLoading(false);
+      // setIsLoading(false);
     }
     getCartData();
   }, [cartUpdated]);

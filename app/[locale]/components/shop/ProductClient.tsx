@@ -1,7 +1,9 @@
 "use client";
 
+import getStripe from "@/utils/get-stripejs";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import LoadingSpinner from "../LoadingSpinner";
 import AddToCartButton from "./AddToCartButton";
 
 function ProductClient({
@@ -11,6 +13,8 @@ function ProductClient({
   productID: number;
   priceID: string;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const handleIncrement = () => {
     setQuantity(quantity + 1);
@@ -22,6 +26,8 @@ function ProductClient({
   };
 
   async function handleBuy() {
+    setIsLoading(true);
+    setIsBuying(true);
     const response = await fetch("/api/stripe/create-payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,12 +43,17 @@ function ProductClient({
 
     if (!stripe) {
       console.error("Stripe.js didn't load correctly.");
+      setIsLoading(false);
+      setIsBuying(false);
       return;
     }
 
     if (sessionId) {
       try {
         const { error } = await stripe.redirectToCheckout({ sessionId });
+
+        setIsLoading(false);
+        setIsBuying(false);
 
         if (error) {
           console.error("Error redirecting to checkout:", error.message);
@@ -56,41 +67,54 @@ function ProductClient({
   }
 
   return (
-    <div className="flex justify-between">
-      <div className="flex items-center gap-4">
-        <Button
-          variant="outline"
-          size="sm"
-          className="px-2 py-1 dark:bg-white dark:text-black"
-          onClick={handleDecrement}
-        >
-          -
-        </Button>
-        <div className="text-xl">{quantity} </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="px-2 py-1 dark:bg-white dark:text-black"
-          onClick={handleIncrement}
-        >
-          +
-        </Button>
+    <div className="flex flex-col">
+      <div
+        className={`flex justify-between ${
+          isLoading ? "pointer-events-none opacity-60" : ""
+        }`}
+      >
+        <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="sm"
+            className="px-2 py-1 dark:bg-white dark:text-black"
+            onClick={handleDecrement}
+          >
+            -
+          </Button>
+          <div className="text-xl">{quantity} </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className="px-2 py-1 dark:bg-white dark:text-black"
+            onClick={handleIncrement}
+          >
+            +
+          </Button>
+        </div>
+        <div className="text-xl">
+          <AddToCartButton
+            quantity={quantity}
+            productID={productID}
+            priceID={priceID}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+        </div>
+        <div className="text-xl">
+          <button
+            onClick={() => handleBuy()}
+            className="border border-[#1B4A8E] px-4 py-2 rounded-sm text-[#1B4A8E] dark:text-white dark:hover:bg-slate-900 hover:bg-[#1B4A8E] hover:text-white"
+          >
+            {!isBuying ? "BUY NOW" : "BUYING..."}
+          </button>
+        </div>
       </div>
-      <div className="text-xl">
-        <AddToCartButton
-          quantity={quantity}
-          productID={productID}
-          priceID={priceID}
-        />
-      </div>
-      <div className="text-xl">
-        <button
-          onClick={() => handleBuy()}
-          className="border border-[#1B4A8E] px-4 py-2 rounded-sm text-[#1B4A8E] dark:text-white dark:hover:bg-slate-900 hover:bg-[#1B4A8E] hover:text-white"
-        >
-          BUY NOW
-        </button>
-      </div>
+      {isLoading && (
+        <div className="flex justify-center mt-2">
+          <LoadingSpinner />
+        </div>
+      )}
     </div>
   );
 }
