@@ -12,10 +12,14 @@ import ProductCard from "../components/shop/ProductCard";
 import { CiSearch } from "react-icons/ci";
 import ShoppingCartButton from "../components/shop/ShoppingCartButton";
 
-async function Shop() {
+async function Shop({ searchParams }) {
   const supabase = await createClient();
 
   const { data, error } = await supabase.from("products").select("*");
+
+  const productList = data;
+
+  const { sortBy } = searchParams;
 
   return (
     <main className="flex justify-center">
@@ -91,7 +95,7 @@ async function Shop() {
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="option-three" id="option-two" />
                   <Label htmlFor="option-two" className="font-normal">
-                    $25 to $100
+                    $20 to $100
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">

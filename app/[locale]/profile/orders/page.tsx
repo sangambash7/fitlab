@@ -15,7 +15,7 @@ async function Orders() {
   const { data: orders, error } = await supabase
     .from("orders")
     .select(
-      "product_id, created_at, quantity, price_total, session_id, contact_number, delivery_address"
+      "id, created_at, quantity, price_total, session_id, contact_number, delivery_address"
     );
 
   console.log(orders);
@@ -27,7 +27,7 @@ async function Orders() {
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Product ID</TableHead>
+            <TableHead className="w-[100px]">Order ID</TableHead>
             <TableHead className="text-center">Order created</TableHead>
             <TableHead className="text-right">Total price </TableHead>
             <TableHead className="text-right">
@@ -40,9 +40,7 @@ async function Orders() {
           {orders &&
             orders.map((order, index) => (
               <TableRow key={index}>
-                <TableCell className="font-medium">
-                  {order.product_id}
-                </TableCell>
+                <TableCell className="font-medium">{order.id}</TableCell>
                 <TableCell className="text-center">
                   {new Date(order.created_at).toLocaleString()}
                 </TableCell>

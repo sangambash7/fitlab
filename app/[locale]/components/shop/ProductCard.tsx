@@ -11,7 +11,6 @@ function ProductCard({
   name: string;
   price: number;
 }) {
-  console.log("ProductCard run");
   return (
     <>
       <Link href={`shop/${id}`}>
