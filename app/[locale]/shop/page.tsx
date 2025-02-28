@@ -11,15 +11,23 @@ import { createClient } from "@/utils/supabase/server";
 import ProductCard from "../components/shop/ProductCard";
 import { CiSearch } from "react-icons/ci";
 import ShoppingCartButton from "../components/shop/ShoppingCartButton";
+import SortBySelect from "../components/shop/SortBySelect";
 
 async function Shop({ searchParams }) {
   const supabase = await createClient();
-
-  const { data, error } = await supabase.from("products").select("*");
-
-  const productList = data;
-
   const { sortBy } = searchParams;
+
+  let query = supabase.from("products").select("*");
+
+  if (sortBy === "asc") {
+    query = query.order("price", { ascending: true });
+  } else if (sortBy === "desc") {
+    query = query.order("price", { ascending: false });
+  }
+
+  const { data, error } = await query;
+
+  console.log(sortBy);
 
   return (
     <main className="flex justify-center">
@@ -134,17 +142,7 @@ async function Shop({ searchParams }) {
               </button>
             </div>
             <div className="flex items-center gap-2">
-              Sort By:
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Newly Listed" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="new">Newly Listed</SelectItem>
-                  <SelectItem value="asc">Lowest Price First</SelectItem>
-                  <SelectItem value="desc">Highest Price First</SelectItem>
-                </SelectContent>
-              </Select>
+              <SortBySelect />
               <span className="text-2xl">
                 <ShoppingCartButton />
               </span>
